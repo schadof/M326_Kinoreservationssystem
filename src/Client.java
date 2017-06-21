@@ -1,5 +1,11 @@
 public class Client {
-    public void Client(){
+
+    String completeName;
+    String phoneNumber;
+    String eMail;
+    String address;
+
+    public Client(){
 
     }
 

@@ -1,5 +1,11 @@
 public class CinemaManagement {
-    public void CinemaManagement{
+
+    RoomAdministration roomAdmin = new RoomAdministration();
+    PresentationAdministration preAdmin = new PresentationAdministration();
+    MovieAdministration movieAdmin = new MovieAdministration();
+    ClientAdministration clientAdmin = new ClientAdministration();
+
+    public CinemaManagement{
 
     }
 

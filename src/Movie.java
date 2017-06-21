@@ -1,5 +1,12 @@
+import java.time.Duration;
+
 public class Movie {
-    public void Movie(){
+
+    String title;
+    Duration duration;
+    String description;
+
+    public Movie(){
 
     }
 

@@ -1,5 +1,8 @@
 public class MovieAdministration {
-    public void MovieAdministration{
+
+    Movie movie = new Movie();
+
+    public MovieAdministration{
 
     }
 }

@@ -1,5 +1,8 @@
 public class RoomAdministration {
-    public void RoomAdministration(){
+
+    CinemaRoom cinemaRoom = new CinemaRoom();
+
+    public RoomAdministration(){
 
     }
 

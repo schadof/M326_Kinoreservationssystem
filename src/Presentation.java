@@ -1,5 +1,8 @@
 public class Presentation {
-    public void Presentation(){
+
+    Movie movie = new Movie();
+
+    public Presentation(){
 
     }
 

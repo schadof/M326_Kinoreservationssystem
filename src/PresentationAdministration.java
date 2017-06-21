@@ -2,6 +2,8 @@ import java.text.SimpleDateFormat;
 
 public class PresentationAdministration {
 
+    Presentation presentation = new Presentation();
+
     public PresentationAdministration(){
 
     }
