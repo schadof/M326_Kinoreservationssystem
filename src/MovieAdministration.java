@@ -1,8 +1,8 @@
 public class MovieAdministration {
 
-    Movie movie = new Movie();
+    Movie[] movies;
 
-    public MovieAdministration{
-
+    public MovieAdministration(){
+        movies = new Movie[0];
     }
 }
