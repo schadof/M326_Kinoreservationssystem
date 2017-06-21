@@ -1,5 +1,8 @@
 public class Reservation {
-    public void Reservation(){
+
+    Client client = new Client();
+
+    public Reservation(){
 
     }
 

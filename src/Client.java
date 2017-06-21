@@ -1,17 +1,19 @@
 public class Client {
-    private String fullName;
-    private  String phoneNumber;
-    private String eMail;
-    private String address;
-    public void Client(String Name, String Number, String Email, String Address){
-        fullName = Name;
+
+    String completeName;
+    String phoneNumber;
+    String eMail;
+    String address;
+
+    public Client(String Name, String Number, String Email, String Address){
+        completeName = Name;
         phoneNumber = Number;
         eMail = Email;
         address = Address;
     }
 
     public String getName(){
-        return fullName;
+        return completeName;
     }
     public String getPhone(){
         return phoneNumber;

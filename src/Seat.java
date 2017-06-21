@@ -1,5 +1,8 @@
 public class Seat {
-    public void Seat(){
+
+    int number;
+
+    public Seat(){
 
     }
 

@@ -1,5 +1,8 @@
 public class ClientAdministration {
-    public void ClientAdministration(){
+
+    Client client = new Client();
+
+    public ClientAdministration(){
 
     }
 

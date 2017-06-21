@@ -1,15 +1,18 @@
 public class Row {
-    public void Row(){
+
+    Seat seat= new Seat();
+
+    public Row(){
 
     }
 
-    public Seat getFirstChair(){
+    public Seat getFirstSeat(){
 
     }
-    public Seat getLastChair(){
+    public Seat getLastSeat(){
 
     }
-    public Seat getChair(){
+    public Seat[] getSeats(int int1, int int2){
 
     }
 }

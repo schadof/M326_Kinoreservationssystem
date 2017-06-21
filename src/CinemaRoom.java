@@ -1,5 +1,8 @@
 public class CinemaRoom {
-    public void CinemaRoom(){
+
+    Row rows = new Row();
+
+    public CinemaRoom(){
 
     }
 
