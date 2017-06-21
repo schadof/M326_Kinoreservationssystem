@@ -11,12 +11,12 @@ public class Movie {
     }
 
     public String getDescription(){
-
+        return description;
     }
     public String getTitle(){
-
+        return title;
     }
-    public String getDuration(){
-
+    public Duration getDuration(){
+        return duration;
     }
 }

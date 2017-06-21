@@ -7,7 +7,7 @@ public class Reservation {
     }
 
     public Client getClient(){
-
+        return client;
     }
     public Seat getSeat(){
 
