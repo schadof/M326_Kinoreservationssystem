@@ -1,6 +1,7 @@
 public class Reservation {
 
-    Client client = new Client();
+    Client client;
+    Seat seat = new Seat();
 
     public Reservation(){
 
@@ -10,6 +11,6 @@ public class Reservation {
         return client;
     }
     public Seat getSeat(){
-
+        return seat;
     }
 }
