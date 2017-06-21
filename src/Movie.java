@@ -27,7 +27,7 @@ public class Movie {
         public Builder(){
             _title = "Untitled";
             _duration = Duration.ZERO;
-            _description = "No _description";
+            _description = "No description";
         }
         public Movie Build(){
             Movie movie = new Movie();

@@ -15,9 +15,7 @@ public class Client {
     public String getName(){
         return completeName;
     }
-    public String getPhone(){
-        return phoneNumber;
-    }
+    public String getPhone(){ return phoneNumber; }
     public String getMail(){
         return eMail;
     }

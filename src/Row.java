@@ -1,18 +1,11 @@
 public class Row {
 
-    Seat seat= new Seat();
+    Seat[] seats;
 
     public Row(){
-
+        seats = new Seat[0];
     }
-
-    public Seat getFirstSeat(){
-
-    }
-    public Seat getLastSeat(){
-
-    }
-    public Seat[] getSeats(int int1, int int2){
-
-    }
+    public Seat getFirstSeat(){ return Utility.Array_Any(seats) ? seats[0] : null; }
+    public Seat getLastSeat(){ return Utility.Array_Last(seats); }
+    public Seat[] getSeats(){ return seats; }
 }
