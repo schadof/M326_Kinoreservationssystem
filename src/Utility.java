@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.function.Function;
 import java.util.function.Predicate;
 
 /**
@@ -9,16 +8,13 @@ import java.util.function.Predicate;
 public class Utility {
     public static <T> T[] Array_Add(T[] source, T additional_obj){
         ArrayList<T> newArray = new ArrayList<T>();
-        for (T obj : source)
-            newArray.add(obj);
+        for (T obj : source) newArray.add(obj);
         newArray.add(additional_obj);
         return (T[])newArray.toArray();
     }
 
     public static <T> T Array_Find(T[] source, Predicate<T> predicate){
-        for(T obj : source)
-            if (predicate.test(obj))
-                return obj;
+        for(T obj : source) if (predicate.test(obj)) return obj;
         return null;
     }
 
@@ -27,8 +23,7 @@ public class Utility {
     public static <T> T Array_Last(T[] source){ return Array_Any(source) ? source[source.length-1] : null; }
 
     public static <T> boolean Array_Any(T[] source, Predicate<T> predicate){
-        for(T obj : source)
-            if (predicate.test(obj)) return true;
+        for(T obj : source) if (predicate.test(obj)) return true;
         return false;
     }
 }

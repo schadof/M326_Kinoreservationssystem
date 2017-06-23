@@ -1,9 +1,9 @@
 public class Client {
 
-    String completeName;
-    String phoneNumber;
-    String eMail;
-    String address;
+    private String completeName;
+    private String phoneNumber;
+    private String eMail;
+    private String address;
 
     public Client(String Name, String Number, String Email, String Address){
         completeName = Name;
@@ -12,14 +12,8 @@ public class Client {
         address = Address;
     }
 
-    public String getName(){
-        return completeName;
-    }
+    public String getName(){ return completeName; }
     public String getPhone(){ return phoneNumber; }
-    public String getMail(){
-        return eMail;
-    }
-    public String getAddress(){
-        return address;
-    }
+    public String getMail(){ return eMail; }
+    public String getAddress(){ return address; }
 }

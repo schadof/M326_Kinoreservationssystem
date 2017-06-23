@@ -2,7 +2,7 @@ import java.lang.reflect.Array;
 
 public class ClientAdministration {
 
-    Client[] clients;
+    private Client[] clients;
 
     public ClientAdministration(){
         clients = new Client[0];
