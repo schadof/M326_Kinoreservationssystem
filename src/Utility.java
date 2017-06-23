@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.function.Predicate;
 
 /**
@@ -6,10 +7,17 @@ import java.util.function.Predicate;
  * Created by silva on 21.06.2017.
  */
 public class Utility {
-    public static <T> T[] Array_Add(T[] source, T additional_obj){
-        ArrayList<T> newArray = new ArrayList<T>();
-        for (T obj : source) newArray.add(obj);
-        newArray.add(additional_obj);
+    public static <T> T[] Array_Add(T[] source, T target){
+        ArrayList<T> newArray = new ArrayList<>();
+        Collections.addAll(newArray, source);
+        newArray.add(target);
+        return (T[])newArray.toArray();
+    }
+
+    public static <T> T[] Array_Remove(T[] source, T target){
+        ArrayList<T> newArray = new ArrayList<>();
+        Collections.addAll(newArray, source);
+        newArray.remove(target);
         return (T[])newArray.toArray();
     }
 

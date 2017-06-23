@@ -10,4 +10,7 @@ public class MovieAdministration {
 
     public void addMovie(Movie movie){movies = Utility.Array_Add(movies, movie);}
 
+    public void removeMove(Movie movie){movies = Utility.Array_Remove(movies, movie);}
+
+
 }
