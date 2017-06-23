@@ -1,4 +1,3 @@
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.function.Predicate;
@@ -16,15 +15,13 @@ public class Utility {
     }
 
     public static <T> T[] Array_Add(T[] source, T target){
-        ArrayList<T> newArray = new ArrayList<>();
-        Collections.addAll(newArray, source);
+        ArrayList<T> newArray = Array_ToList(source);
         newArray.add(target);
         return (T[])newArray.toArray();
     }
 
     public static <T> T[] Array_Remove(T[] source, T target){
-        ArrayList<T> newArray = new ArrayList<>();
-        Collections.addAll(newArray, source);
+        ArrayList<T> newArray = Array_ToList(source);
         newArray.remove(target);
         return (T[])newArray.toArray();
     }
@@ -41,5 +38,11 @@ public class Utility {
     public static <T> boolean Array_Any(T[] source, Predicate<T> predicate){
         for(T obj : source) if (predicate.test(obj)) return true;
         return false;
+    }
+
+    public static <T> int Array_Count(T[] source, Predicate<T> predicate){
+        int count = 0;
+        for (T obj : source) if(predicate.test(obj)) count++;
+        return count;
     }
 }

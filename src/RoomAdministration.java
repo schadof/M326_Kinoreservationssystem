@@ -1,10 +1,9 @@
 public class RoomAdministration {
 
-    CinemaRoom cinemaRoom;
-    CinemaRoom[] cinemaRooms;
+    private CinemaRoom[] cinemaRooms;
 
     public RoomAdministration(){
-
+        cinemaRooms = new CinemaRoom[0];
     }
 
     public void createRoom(Row[] row){

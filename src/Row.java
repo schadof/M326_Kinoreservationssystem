@@ -1,6 +1,6 @@
 public class Row {
 
-    Seat[] seats;
+    private Seat[] seats;
 
     public Row(){
         seats = new Seat[0];

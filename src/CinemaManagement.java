@@ -1,9 +1,9 @@
 public class CinemaManagement {
 
-    RoomAdministration roomAdmin;
-    PresentationAdministration preAdmin;
-    MovieAdministration movieAdmin;
-    ClientAdministration clientAdmin;
+    private RoomAdministration roomAdmin;
+    private PresentationAdministration preAdmin;
+    private MovieAdministration movieAdmin;
+    private ClientAdministration clientAdmin;
 
     public RoomAdministration getRoomAdmin(){
         if (roomAdmin == null)

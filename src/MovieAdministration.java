@@ -1,6 +1,6 @@
 public class MovieAdministration {
 
-    Movie[] movies;
+    private Movie[] movies;
 
     public MovieAdministration(){
         movies = new Movie[0];
@@ -12,5 +12,7 @@ public class MovieAdministration {
 
     public void removeMove(Movie movie){movies = Utility.Array_Remove(movies, movie);}
 
+    //Certainly useful ~silvan
+    public Movie getMovieByName(String title){return Utility.Array_Find(movies, movie -> movie.getTitle() == title);}
 
 }
