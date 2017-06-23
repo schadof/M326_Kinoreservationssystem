@@ -1,3 +1,4 @@
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.function.Predicate;
@@ -7,6 +8,13 @@ import java.util.function.Predicate;
  * Created by silva on 21.06.2017.
  */
 public class Utility {
+
+    public static <T> ArrayList<T> Array_ToList(T[] source){
+        ArrayList<T> List = new ArrayList<>();
+        Collections.addAll(List, source);
+        return List;
+    }
+
     public static <T> T[] Array_Add(T[] source, T target){
         ArrayList<T> newArray = new ArrayList<>();
         Collections.addAll(newArray, source);
