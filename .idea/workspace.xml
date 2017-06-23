@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="57720cb4-fd95-4474-890a-64ffaa0771a5" name="Default" comment="Pre gitignore fix">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/M326_Kinoreservationssystem/Client.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/M326_Kinoreservationssystem/ClientAdministration.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/JetBrains.gitignore" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/MovieAdministration.java" afterPath="$PROJECT_DIR$/src/MovieAdministration.java" />
+    <list default="true" id="57720cb4-fd95-4474-890a-64ffaa0771a5" name="Default" comment="">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/M326_Kinoreservationssystem/Client.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/M326_Kinoreservationssystem/ClientAdministration.class" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -47,8 +49,8 @@
       <file leaf-file-name="PresentationAdministration.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/PresentationAdministration.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="9" column="0" lean-forward="true" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+            <state relative-caret-position="102">
+              <caret line="6" column="40" lean-forward="true" selection-start-line="6" selection-start-column="40" selection-end-line="6" selection-end-column="40" />
               <folding />
             </state>
           </provider>
@@ -657,7 +659,14 @@
       <option name="project" value="LOCAL" />
       <updated>1498216293461</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Pre gitignore fix">
+      <created>1498219732683</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1498219732683</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -729,7 +738,8 @@
     <MESSAGE value="Added basic ClientAdministration functionality&#10;Added Utility class with useful array functions (PREDICATE FUNCTIONS YAY!)" />
     <MESSAGE value="Added basic functionality for movies&#10;changed movie class to use builder pattern&#10;changed field type of movieadmin class and added functionality to it's constructor&#10;&#10;Now... Should we use the builder pattern?" />
     <MESSAGE value="Removed Builder Pattern. All infos are always required, therefore suboptimal&#10;Fixed Modificators of some instance variables to be private&#10;Made some single-call statements to be one-liners" />
-    <option name="LAST_COMMIT_MESSAGE" value="Removed Builder Pattern. All infos are always required, therefore suboptimal&#10;Fixed Modificators of some instance variables to be private&#10;Made some single-call statements to be one-liners" />
+    <MESSAGE value="Pre gitignore fix" />
+    <option name="LAST_COMMIT_MESSAGE" value="Pre gitignore fix" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1126,8 +1136,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/PresentationAdministration.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="0" lean-forward="true" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+        <state relative-caret-position="102">
+          <caret line="6" column="40" lean-forward="true" selection-start-line="6" selection-start-column="40" selection-end-line="6" selection-end-column="40" />
           <folding />
         </state>
       </provider>
