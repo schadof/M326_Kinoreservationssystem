@@ -6,7 +6,7 @@ public class RoomAdministration {
 
     }
 
-    public void createRoom(Row[] rows){
+    public void createRoom(){
 
     }
     public CinemaRoom getRoom(int integer){
