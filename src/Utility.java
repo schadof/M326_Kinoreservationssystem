@@ -6,6 +6,11 @@ import java.util.function.Predicate;
  * Contains various methods for easier programming
  * Created by silva on 21.06.2017.
  */
+
+/**
+ * Generics dont work well with java, we should replace them with ArrayList
+ */
+
 public class Utility {
 
     public static <T> ArrayList<T> Array_ToList(T[] source){
