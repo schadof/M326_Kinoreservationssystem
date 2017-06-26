@@ -1,18 +1,20 @@
+import java.util.ArrayList;
+
 public class RoomAdministration {
 
-    private CinemaRoom[] cinemaRooms;
+    private ArrayList<CinemaRoom> cinemaRooms;
 
     public RoomAdministration(){
-        cinemaRooms = new CinemaRoom[0];
+        cinemaRooms = new ArrayList<>();
     }
 
-    public void createRoom(Row[] row){
-        cinemaRooms = Utility.Array_Add(cinemaRooms,new CinemaRoom(row));
+    public void createRoom(ArrayList<Row> row){
+        cinemaRooms.add(new CinemaRoom(row));
     }
     public CinemaRoom getRoom(int integer){
-        return cinemaRooms[integer];
+        return cinemaRooms.get(integer);
     }
-    public CinemaRoom[] getAllRooms(){
+    public ArrayList<CinemaRoom> getAllRooms(){
         return cinemaRooms;
     }
 }

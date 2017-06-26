@@ -1,17 +1,18 @@
+import java.util.ArrayList;
 
 public class ClientAdministration {
 
-    private Client[] clients;
+    private ArrayList<Client> clients;
 
     public ClientAdministration(){
-        clients = new Client[0];
+        clients = new ArrayList<>();
     }
 
     public void addClient(Client client){
-        clients = Utility.Array_Add(clients, client);
+        clients.add(client);
     }
     public Client getClientByName(String name){
-        return Utility.Array_Find(clients, client -> client.getName().equals(name));
+        return clients.contains(client.getName().equals(name));
     }
     public Client getClientByPhone(String phone){
         return Utility.Array_Find(clients, client -> client.getPhone().equals(phone));

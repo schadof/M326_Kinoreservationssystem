@@ -1,18 +1,18 @@
+import java.util.ArrayList;
+
 public class CinemaRoom {
 
-    private Row[] rows;
+    private ArrayList<Row> rows;
 
-    public CinemaRoom(Row[] rows){
+    public CinemaRoom(ArrayList rows){
         this.rows = rows;
     }
 
-    public Row getRow(int index){
-        if (rows == null || rows.length == 0)   return null;
-        if (index < 0)                          return  rows[0];
-        if (index >= rows.length)               return rows[rows.length-1];
-        return rows[index];
+    public ArrayList<Seat> getRow(int index){
+        if (rows.isEmpty())   return null;
+        return rows.get(index).getSeats();
     }
-    public Row[] getAllRows(){
+    public ArrayList<Row> getAllRows(){
         return rows;
     }
 }
