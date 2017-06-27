@@ -1,18 +1,27 @@
+import java.util.ArrayList;
+
 public class MovieAdministration {
 
-    private Movie[] movies;
+    private ArrayList<Movie> movies;
 
     public MovieAdministration(){
-        movies = new Movie[0];
+        movies = new ArrayList<>();
     }
 
-    public Movie[] getAllMovies(){ return movies; }
+    public ArrayList<Movie> getAllMovies(){ return movies; }
 
-    public void addMovie(Movie movie){movies = Utility.Array_Add(movies, movie);}
+    public void addMovie(Movie movie){movies.add(movie);}
 
-    public void removeMove(Movie movie){movies = Utility.Array_Remove(movies, movie);}
+    public void removeMove(Movie movie){movies.add(movie);}
 
     //Certainly useful ~silvan
-    public Movie getMovieByName(String title){return Utility.Array_Find(movies, movie -> movie.getTitle() == title);}
+    public Movie getMovieByName(String title){
+        for(Movie movie : movies) {
+            if(movie.getTitle().equals(title)){
+                return movie;
+            }
+        }
+        return null;
+    }
 
 }

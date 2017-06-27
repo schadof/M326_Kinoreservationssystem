@@ -12,15 +12,35 @@ public class ClientAdministration {
         clients.add(client);
     }
     public Client getClientByName(String name){
-        return clients.contains(client.getName().equals(name));
+        for(Client client : clients) {
+            if(client.getName().equals(name)){
+                return client;
+            }
+        }
+        return null;
     }
     public Client getClientByPhone(String phone){
-        return Utility.Array_Find(clients, client -> client.getPhone().equals(phone));
+        for(Client client : clients) {
+            if(client.getPhone().equals(phone)){
+                return client;
+            }
+        }
+        return null;
     }
     public Client getClientByMail(String mail){
-        return Utility.Array_Find(clients, client -> client.getMail().equals(mail));
+        for(Client client : clients) {
+            if(client.getMail().equals(mail)){
+                return client;
+            }
+        }
+        return null;
     }
     public Client getClientByAddress(String address){
-        return Utility.Array_Find(clients, client -> client.getAddress().equals(address));
+        for(Client client : clients) {
+            if(client.getAddress().equals(address)){
+                return client;
+            }
+        }
+        return null;
     }
 }

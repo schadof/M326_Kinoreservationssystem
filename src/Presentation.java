@@ -1,31 +1,32 @@
 import java.time.Instant;
+import java.util.ArrayList;
 
 public class Presentation {
 
     private Instant start;
     private CinemaRoom room;
     private Movie movie;
-    private Reservation[] reservations;
+    private ArrayList<Reservation> reservations;
 
     public Presentation(Instant start, CinemaRoom room, Movie movie){
-        reservations = new Reservation[0];
+        reservations = new ArrayList<>();
         this.start = start;
         this.room = room;
         this.movie = movie;
     }
 
-    public Seat[] getFreeSeats(){
-        Seat[] seats = new Seat[0];
+    public ArrayList<Seat> getFreeSeats(){
+        ArrayList<Seat> seats = new ArrayList<>();
         for( Row row : room.getAllRows())
             for (Seat seat : row.getSeats()){
                 for(Reservation reservation : reservations)
                     if (reservation.getSeat() != seat)
-                        seats = Utility.Array_Add(seats, seat);
+                        seats.add(seat);
             }
         return seats;
     }
     public void createReservation(Seat seat, Client client){
-        reservations = Utility.Array_Add(reservations, new Reservation(client, this, seat));
+        reservations.add(new Reservation(client,this,seat));
     }
 
     public Movie getMovie(){return movie;}
