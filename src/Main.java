@@ -12,8 +12,8 @@ public class Main {
         ClientAdministration clientAdministration = new ClientAdministration();
         Client client = new Client("Lars","1234567","Test@test.ch","Zuhause");
         clientAdministration.addClient(client);
-        System.out.println(cinemaManagement.getMovieAdmin().getAllMovies().get(0).getTitle());
-        System.out.println(clientAdministration.getClientByName("Lars").getAddress());
+//        System.out.println(cinemaManagement.getMovieAdmin().getAllMovies().get(0).getTitle());
+//        System.out.println(clientAdministration.getClientByName("Lars").getAddress());
         PresentationAdministration presentationAdministration = new PresentationAdministration();
         RoomAdministration roomAdministration = new RoomAdministration();
         ArrayList<Row> rows = new ArrayList<>();
@@ -23,11 +23,12 @@ public class Main {
         rows.add(new Row(seats));
         roomAdministration.createRoom(rows);
         CinemaRoom cinemaRoom = new CinemaRoom(rows);
-        Presentation presentation = new Presentation(Instant.now(), cinemaRoom, movie);
+//        Presentation presentation = new Presentation(Instant.now(), cinemaRoom, movie);
 
         presentationAdministration.createPresentation(movie, cinemaRoom, Instant.now());
-        Reservation reservation = new Reservation(client, presentation, seat);
-        System.out.println(reservation.getClient().getMail());
+        Reservation reservation = new Reservation(client, presentationAdministration.getPresentation(movie, Instant.now(), cinemaRoom), seat);
+        System.out.println(reservation.getPresentation().getMovie().getTitle());
         System.out.println(reservation.getSeat().getNumber());
+        System.out.println(reservation.getClient().getName());
     }
 }
