@@ -1,33 +1,34 @@
 import java.time.Instant;
+import java.util.ArrayList;
 
 public class PresentationAdministration {
 
-    private Presentation[] presentations;
+    private ArrayList<Presentation> presentations;
 
     public PresentationAdministration(){
-        presentations = new Presentation[0];
+        presentations = new ArrayList<>();
     }
 
     public void createPresentation(Movie movie, CinemaRoom cinemaRoom, Instant start){
-        presentations = Utility.Array_Add(presentations,new Presentation(start, cinemaRoom, movie));
+        presentations.add(new Presentation(start, cinemaRoom, movie));
     }
 
-    public Presentation[] getAllPresentations(){ return presentations; }
+    public ArrayList<Presentation> getAllPresentations(){ return presentations; }
 
     // This method is rarely useful imo... ~silvan
     public Presentation getPresentation(Movie movie, Instant start, CinemaRoom cinemaRoom){
-        Presentation result = Utility.Array_Find(presentations,
-                presentation ->
-                        presentation.getMovie() == movie &&
-                        presentation.getRoom() == cinemaRoom &&
-                        presentation.getStart() == start );
-        return result;
+        for(Presentation presentation : presentations) {
+            if(presentation.getMovie().equals(movie) && presentation.getStart().equals(start) && presentation.getRoom().equals(cinemaRoom)){
+                return presentation;
+            }
+        }
+        return null;
     }
 
     // It is easier to get a presentation and change the result. ~silvan
 
-    public void removePresentation(Presentation target){ //It is easier to simply provide the presentation itself ~silvan
-        presentations = Utility.Array_Remove(presentations, target);
+    public void removePresentation(Presentation target){
+        presentations.remove(target);
     }
 
 }
