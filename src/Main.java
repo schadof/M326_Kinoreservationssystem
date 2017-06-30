@@ -24,9 +24,9 @@ public class Main {
         roomAdministration.createRoom(rows);
         CinemaRoom cinemaRoom = new CinemaRoom(rows);
 //        Presentation presentation = new Presentation(Instant.now(), cinemaRoom, movie);
-
-        presentationAdministration.createPresentation(movie, cinemaRoom, Instant.now());
-        Reservation reservation = new Reservation(client, presentationAdministration.getPresentation(movie, Instant.now(), cinemaRoom), seat);
+        Instant now = Instant.now();
+        presentationAdministration.createPresentation(movie, cinemaRoom, now);
+        Reservation reservation = new Reservation(client, presentationAdministration.getPresentation(movie, now, cinemaRoom), seat);
         System.out.println(reservation.getPresentation().getMovie().getTitle());
         System.out.println(reservation.getSeat().getNumber());
         System.out.println(reservation.getClient().getName());
