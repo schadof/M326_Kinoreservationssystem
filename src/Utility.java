@@ -15,7 +15,7 @@ import java.util.function.Predicate;
 
 /**
  * Contains various methods for easier programming
- * Created by silva on 21.06.2017.
+ * Created by silvan on 21.06.2017.
  */
 public class Utility {
 
