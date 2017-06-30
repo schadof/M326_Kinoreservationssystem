@@ -9,7 +9,7 @@ public class CinemaRoom {
     }
 
     public ArrayList<Seat> getRow(int index){
-        if (rows.isEmpty())   return null;
+        if (rows.isEmpty()) return null;
         return rows.get(index).getSeats();
     }
     public ArrayList<Row> getAllRows(){

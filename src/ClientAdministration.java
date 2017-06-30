@@ -12,30 +12,15 @@ public class ClientAdministration {
         clients.add(client);
     }
     public Client getClientByName(String name){
-        for(Client client : clients) {
-            if(client.getName().equals(name)){
-                return client;
-            }
-        }
-        return null;
+        return Utility.Array_First(clients, client -> client.getName().equals(name));
     }
     public Client getClientByPhone(String phone){
         return Utility.Array_First(clients, client -> client.getPhone().equals(phone));
     }
     public Client getClientByMail(String mail){
-        for(Client client : clients) {
-            if(client.getMail().equals(mail)){
-                return client;
-            }
-        }
-        return null;
+        return Utility.Array_First(clients, client -> client.getMail().equals(mail));
     }
     public Client getClientByAddress(String address){
-        for(Client client : clients) {
-            if(client.getAddress().equals(address)){
-                return client;
-            }
-        }
-        return null;
+        return Utility.Array_First(clients, client -> client.getAddress().equals(address));
     }
 }

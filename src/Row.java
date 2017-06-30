@@ -7,7 +7,7 @@ public class Row {
     public Row(int seatCount){
         seats = new ArrayList<>();
         Seat prev = null;
-        Seat next = null;
+        Seat next;
         for(int i = 0; i < seatCount ; i++)
         {
             next = new Seat(prev);

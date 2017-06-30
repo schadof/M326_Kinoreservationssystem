@@ -1,6 +1,5 @@
 import java.time.Duration;
 import java.time.Instant;
-import java.util.ArrayList;
 
 import static java.time.temporal.ChronoUnit.HOURS;
 
