@@ -11,8 +11,8 @@ public class RoomAdministration {
     public void createRoom(ArrayList<Row> row){
         cinemaRooms.add(new CinemaRoom(row));
     }
-    public CinemaRoom getRoom(int integer){
-        return cinemaRooms.get(integer);
+    public CinemaRoom getRoom(int index){
+        return cinemaRooms.get(index);
     }
     public ArrayList<CinemaRoom> getAllRooms(){
         return cinemaRooms;

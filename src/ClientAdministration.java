@@ -20,12 +20,7 @@ public class ClientAdministration {
         return null;
     }
     public Client getClientByPhone(String phone){
-        for(Client client : clients) {
-            if(client.getPhone().equals(phone)){
-                return client;
-            }
-        }
-        return null;
+        return Utility.Array_First(clients, client -> client.getPhone().equals(phone));
     }
     public Client getClientByMail(String mail){
         for(Client client : clients) {

@@ -6,27 +6,31 @@ import static java.time.temporal.ChronoUnit.HOURS;
 
 public class Main {
     public static void main(String[] args) {
-        CinemaManagement cinemaManagement = new CinemaManagement();
-        Movie movie = new Movie("Test", Duration.of(2, HOURS),"This is a test");
-        cinemaManagement.getMovieAdmin().addMovie(movie);
-        ClientAdministration clientAdministration = new ClientAdministration();
-        Client client = new Client("Lars","1234567","Test@test.ch","Zuhause");
-        clientAdministration.addClient(client);
-//        System.out.println(cinemaManagement.getMovieAdmin().getAllMovies().get(0).getTitle());
-//        System.out.println(clientAdministration.getClientByName("Lars").getAddress());
-        PresentationAdministration presentationAdministration = new PresentationAdministration();
-        RoomAdministration roomAdministration = new RoomAdministration();
-        ArrayList<Row> rows = new ArrayList<>();
-        ArrayList<Seat> seats = new ArrayList<>();
-        Seat seat = new Seat();
-        seats.add(seat);
-        rows.add(new Row(seats));
-        roomAdministration.createRoom(rows);
-        CinemaRoom cinemaRoom = new CinemaRoom(rows);
-//        Presentation presentation = new Presentation(Instant.now(), cinemaRoom, movie);
+        Instant startTime = Instant.now();
 
-        presentationAdministration.createPresentation(movie, cinemaRoom, Instant.now());
-        Reservation reservation = new Reservation(client, presentationAdministration.getPresentation(movie, Instant.now(), cinemaRoom), seat);
+        CinemaManagement cinemaManagement = new CinemaManagement();
+        cinemaManagement.getMovieAdmin().addMovie(new Movie("Test", Duration.of(2, HOURS),"This is a test"));
+        cinemaManagement.getClientAdmin().addClient(new Client("Lars","1234567","Test@test.ch","Zuhause"));
+        cinemaManagement.getRoomAdmin().createRoom(Utility.Array_Create(new Row[]{
+                new Row(10),
+                new Row(20)
+        }));
+        cinemaManagement.getPresentationAdmin().createPresentation(
+                cinemaManagement.getMovieAdmin().getMovieByName("Test"),
+                cinemaManagement.getRoomAdmin().getRoom(0),
+                startTime);
+
+
+
+        int resID = cinemaManagement.getPresentationAdmin()
+                .getAllPresentations()
+                .get(0)
+                .createReservation(
+                        cinemaManagement.getRoomAdmin().getRoom(0).getRow(0).get(5),
+                        cinemaManagement.getClientAdmin().getClientByName("Lars"));
+
+        Reservation reservation = Reservation.getReservation(resID);
+
         System.out.println(reservation.getPresentation().getMovie().getTitle());
         System.out.println(reservation.getSeat().getNumber());
         System.out.println(reservation.getClient().getName());

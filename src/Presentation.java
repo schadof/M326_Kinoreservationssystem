@@ -1,3 +1,4 @@
+import java.lang.reflect.Array;
 import java.time.Instant;
 import java.util.ArrayList;
 
@@ -25,8 +26,13 @@ public class Presentation {
             }
         return seats;
     }
-    public void createReservation(Seat seat, Client client){
-        reservations.add(new Reservation(client,this,seat));
+
+    public ArrayList<Reservation> getReservations(){ return reservations; }
+
+    public int createReservation(Seat seat, Client client){
+        Reservation newres = new Reservation(client,this,seat);
+        reservations.add(newres);
+        return newres.getID();
     }
 
     public Movie getMovie(){return movie;}

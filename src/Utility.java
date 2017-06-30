@@ -2,15 +2,21 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.function.Predicate;
 
+
+/*
+ * Generics dont work well with java, we should replace them with ArrayList
+ */
+
+/*
+ * Nope, it's not the generics, it's that the arraylists are implicitly convertible to arrays,
+ * I'm gonna shorten the code again to work with arraylists.
+ */
+
+
 /**
  * Contains various methods for easier programming
  * Created by silva on 21.06.2017.
  */
-
-/**
- * Generics dont work well with java, we should replace them with ArrayList
- */
-
 public class Utility {
 
     public static <T> ArrayList<T> Array_ToList(T[] source){
@@ -19,35 +25,29 @@ public class Utility {
         return List;
     }
 
-    public static <T> T[] Array_Add(T[] source, T target){
-        ArrayList<T> newArray = Array_ToList(source);
-        newArray.add(target);
-        return (T[])newArray.toArray();
-    }
-
-    public static <T> T[] Array_Remove(T[] source, T target){
-        ArrayList<T> newArray = Array_ToList(source);
-        newArray.remove(target);
-        return (T[])newArray.toArray();
-    }
-
-    public static <T> T Array_Find(T[] source, Predicate<T> predicate){
+    public static <T> T Array_First(ArrayList<T> source, Predicate<T> predicate){
         for(T obj : source) if (predicate.test(obj)) return obj;
         return null;
     }
 
-    public static boolean Array_Any(Object[] source){ return source != null && source.length > 0; }
+    public static boolean Array_Any(ArrayList source){ return source != null && source.size() > 0; }
 
-    public static <T> T Array_Last(T[] source){ return Array_Any(source) ? source[source.length-1] : null; }
+    public static <T> T Array_Last(ArrayList<T> source){ return Array_Any(source) ? source.get(source.size()-1) : null; }
 
-    public static <T> boolean Array_Any(T[] source, Predicate<T> predicate){
+    public static <T> boolean Array_Any(ArrayList<T> source, Predicate<T> predicate){
         for(T obj : source) if (predicate.test(obj)) return true;
         return false;
     }
 
-    public static <T> int Array_Count(T[] source, Predicate<T> predicate){
+    public static <T> int Array_Count(ArrayList<T> source, Predicate<T> predicate){
         int count = 0;
         for (T obj : source) if(predicate.test(obj)) count++;
         return count;
+    }
+
+    public static <T> ArrayList<T> Array_Create(T[] content){
+        ArrayList<T> result = new ArrayList<>();
+        for (T item : content) result.add(item);
+        return result;
     }
 }
