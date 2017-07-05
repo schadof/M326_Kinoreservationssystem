@@ -1,6 +1,7 @@
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.control.TitledPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
@@ -13,8 +14,11 @@ public class SmallWindow {
 
     private ArrayList<Label> label;
     private ArrayList<TextField> txtField;
+    private String title;
 
-    public SmallWindow(String names[]){
+    public SmallWindow(String names[],String title){
+
+        this.title = title;
 
         label = new ArrayList<Label>();
         txtField = new ArrayList<TextField>();
@@ -38,6 +42,7 @@ public class SmallWindow {
 
         stage = new Stage();
         stage.setScene(new Scene(grid, 500, 500));
+        stage.setTitle(title);
         stage.show();
     }
 

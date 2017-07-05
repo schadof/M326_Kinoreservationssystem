@@ -63,7 +63,7 @@ public class CinemaView {
           @Override
           public void handle(ActionEvent actionEvent) {
 //              control.getPresentationAdmin().getAllPresentations();
-              SmallWindow smallWindow = new SmallWindow(new String[]{});
+              SmallWindow smallWindow = new SmallWindow(new String[]{"Date","Film","Seat"}, "Get Catalog");
               smallWindow.startWin();
 
           }
@@ -73,7 +73,7 @@ public class CinemaView {
         @Override
         public void handle(ActionEvent actionEvent) {
 //              control.getPresentationAdmin().getAllPresentations();
-            SmallWindow smallWindow = new SmallWindow(new String[]{});
+            SmallWindow smallWindow = new SmallWindow(new String[]{"Date","Time","Room"}, "Get Film");
             smallWindow.startWin();
 
         }
@@ -82,16 +82,16 @@ public class CinemaView {
         @Override
         public void handle(ActionEvent actionEvent) {
 //              control.getPresentationAdmin().getAllPresentations();
-            SmallWindow smallWindow = new SmallWindow(new String[]{});
+            SmallWindow smallWindow = new SmallWindow(new String[]{"Room","Date"}, "Reserve Seat");
             smallWindow.startWin();
 
         }
     });
-      getReservations.addEventHandler(ActionEvent.ACTION, new EventHandler<ActionEvent>() {
+      getReservations.addEventHandler(ActionEvent.ACTION, new EventHandler<ActionEvent>(){
         @Override
         public void handle(ActionEvent actionEvent) {
 //              control.getPresentationAdmin().getAllPresentations();
-            SmallWindow smallWindow = new SmallWindow(new String[]{});
+            SmallWindow smallWindow = new SmallWindow(new String[]{"Roo","Date","Client"}, "get Reservation");
             smallWindow.startWin();
 
         }
@@ -100,7 +100,7 @@ public class CinemaView {
             @Override
             public void handle(ActionEvent actionEvent) {
 //              control.getPresentationAdmin().getAllPresentations();
-                SmallWindow smallWindow = new SmallWindow(new String[]{});
+                SmallWindow smallWindow = new SmallWindow(new String[]{"Room","Client","Date"}, "Cancel Reservation");
                 smallWindow.startWin();
 
             }
