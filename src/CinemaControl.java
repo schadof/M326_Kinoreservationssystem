@@ -24,6 +24,9 @@ public class CinemaControl {
         createEvents();
 
     }
+
+//  This events will help us Morph the date, the events have a flow, which will help us not code redundant events
+//  the current events will pass the next events after it to smallWindow by reference
     private void createEvents() {
         getCatalog = new EventHandler<ActionEvent>() {
             @Override

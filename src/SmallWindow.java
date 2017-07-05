@@ -1,7 +1,6 @@
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.control.TitledPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
@@ -9,6 +8,7 @@ import java.util.ArrayList;
 
 /**
  * Created by 11mmuellerde on 04.07.2017.
+ * the Class will Dynamically adjust itself, depending on he parameter, thus allowing for more broad use
  */
 public class SmallWindow {
 
