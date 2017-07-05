@@ -28,9 +28,7 @@ public class CinemaControl {
         getCatalog = new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-//              control.getPresentationAdmin().getAllPresentations();
-                SmallWindow smallWindow = new SmallWindow(new String[]{"Date", "Film", "Seat"}, "Get Catalog");
-                smallWindow.startWin();
+                smallWindow(new String[]{"Date", "Film", "Seat"}, "Get Catalog");
 
             }
         };
@@ -38,30 +36,28 @@ public class CinemaControl {
         getFilm = new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-//              control.getPresentationAdmin().getAllPresentations();
-                SmallWindow smallWindow = new SmallWindow(new String[]{"Date", "Time", "Room"}, "Get Film");
-                smallWindow.startWin();
+                smallWindow(new String[]{"Date", "Time", "Room"}, "Get Film");
 
             }
         };
         reserveSeat = new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-//              control.getPresentationAdmin().getAllPresentations();
-                SmallWindow smallWindow = new SmallWindow(new String[]{"Room", "Date"}, "Reserve Seat");
-                smallWindow.startWin();
+                smallWindow(new String[]{"Room", "Date"}, "Reserve Seat");
 
             }
         };
         getReservations = new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-//              control.getPresentationAdmin().getAllPresentations();
-                SmallWindow smallWindow = new SmallWindow(new String[]{"Roo", "Date", "Client"}, "get Reservation");
-                smallWindow.startWin();
+                smallWindow(new String[]{"Roo", "Date", "Client"}, "get Reservation");
 
             }
         };
+    }
+    private void smallWindow(String fields[], String title){
+        SmallWindow smallWindow = new SmallWindow(fields,title);
+        smallWindow.startWin();
     }
 
 
