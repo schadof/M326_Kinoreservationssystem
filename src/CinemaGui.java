@@ -1,5 +1,4 @@
 import javafx.application.Application;
-
 import javafx.stage.Stage;
 /**
  * Created by 11mmuellerde on 04.07.2017.

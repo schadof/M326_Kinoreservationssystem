@@ -59,52 +59,11 @@ public class CinemaView {
 
     }
     private void addEvent(){
-      getCatalog.addEventHandler(ActionEvent.ACTION, new EventHandler<ActionEvent>() {
-          @Override
-          public void handle(ActionEvent actionEvent) {
-//              control.getPresentationAdmin().getAllPresentations();
-              SmallWindow smallWindow = new SmallWindow(new String[]{"Date","Film","Seat"}, "Get Catalog");
-              smallWindow.startWin();
-
-          }
-      });
-
-      getFilm.addEventHandler(ActionEvent.ACTION, new EventHandler<ActionEvent>() {
-        @Override
-        public void handle(ActionEvent actionEvent) {
-//              control.getPresentationAdmin().getAllPresentations();
-            SmallWindow smallWindow = new SmallWindow(new String[]{"Date","Time","Room"}, "Get Film");
-            smallWindow.startWin();
-
-        }
-    });
-      reserveSeat.addEventHandler(ActionEvent.ACTION, new EventHandler<ActionEvent>() {
-        @Override
-        public void handle(ActionEvent actionEvent) {
-//              control.getPresentationAdmin().getAllPresentations();
-            SmallWindow smallWindow = new SmallWindow(new String[]{"Room","Date"}, "Reserve Seat");
-            smallWindow.startWin();
-
-        }
-    });
-      getReservations.addEventHandler(ActionEvent.ACTION, new EventHandler<ActionEvent>(){
-        @Override
-        public void handle(ActionEvent actionEvent) {
-//              control.getPresentationAdmin().getAllPresentations();
-            SmallWindow smallWindow = new SmallWindow(new String[]{"Roo","Date","Client"}, "get Reservation");
-            smallWindow.startWin();
-
-        }
-    });
-      removeReservation.addEventHandler(ActionEvent.ACTION, new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-//              control.getPresentationAdmin().getAllPresentations();
-                SmallWindow smallWindow = new SmallWindow(new String[]{"Room","Client","Date"}, "Cancel Reservation");
-                smallWindow.startWin();
-
-            }
-        });
+      getCatalog.addEventHandler(ActionEvent.ACTION, control.getGetCatalog());
+      getFilm.addEventHandler(ActionEvent.ACTION, control.getGetFilm());
+      reserveSeat.addEventHandler(ActionEvent.ACTION, control.getReserveSeat());
+      getReservations.addEventHandler(ActionEvent.ACTION, control.getReserveSeat());
+      removeReservation.addEventHandler(ActionEvent.ACTION, control.getReserveSeat());
     }
     public Scene createView(){
         createPanel();
