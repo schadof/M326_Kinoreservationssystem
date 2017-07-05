@@ -1,7 +1,11 @@
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.paint.Color;
+
 
 /**
  * Created by 11mmuellerde on 05.07.2017.
@@ -11,9 +15,11 @@ public class CinemaView {
     private GridPane grid;
     private BorderPane border;
     private Scene mainScene;
-    private CinemaControll  controll;
+    private Image img;
+    private ImageView imgView ;
+    private CinemaControl controll;
 
-    public CinemaView(CinemaControll  controll){
+    public CinemaView(CinemaControl controll){
         this.controll = controll;
     }
     private void createPanel(){
@@ -22,6 +28,10 @@ public class CinemaView {
         reserveSeat = new Button("Reserve a Seat");
         getReservations = new Button("Show Client Reservation");
         removeReservation = new Button("end Client Reservation");
+        img = new Image("LOGO.png");
+        imgView = new ImageView(img);
+        imgView.setFitWidth(img.getWidth()/2);
+        imgView.setFitHeight(img.getHeight()/2);
 
         getCatalog.setPrefSize(200,20);
         getFilm.setPrefSize(200,20);
@@ -40,6 +50,8 @@ public class CinemaView {
         grid.setVgap(10);
         grid.setHgap(10);
         border.setLeft(grid);
+        border.setRight(imgView);
+        border.setStyle("-fx-background-color: #FFFF");
 
         mainScene = new Scene(border,500,300);
 

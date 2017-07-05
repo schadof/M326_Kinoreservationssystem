@@ -3,7 +3,7 @@ import java.util.ArrayList;
 /**
  * Created by 11mmuellerde on 05.07.2017.
  */
-public class CinemaControll {
+public class CinemaControl {
 
     private RoomAdministration roomAdmin;
     private PresentationAdministration preAdmin;

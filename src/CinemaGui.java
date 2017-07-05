@@ -18,10 +18,15 @@ public class CinemaGui extends Application {
         PresentationAdministration presentationModel = new PresentationAdministration();
 
 
-        CinemaControll  controll = new CinemaControll ();
-        CinemaView view = new CinemaView(controll);
+        CinemaControl control = new CinemaControl();
+        CinemaView view = new CinemaView(control);
 
         primaryStage.setScene(view.createView());
+        primaryStage.setTitle("Kino Verwaltungssystem");
+        primaryStage.setResizable(false);
         primaryStage.show();
+
+        SmallWindow smallWindow = new SmallWindow(new String[]{"spades", "hearts","diamonds", "clubs"});
+        smallWindow.startWin();
     }
 }
