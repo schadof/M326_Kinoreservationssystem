@@ -1,3 +1,5 @@
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
@@ -17,10 +19,10 @@ public class CinemaView {
     private Scene mainScene;
     private Image img;
     private ImageView imgView ;
-    private CinemaControl controll;
+    private CinemaControl control;
 
-    public CinemaView(CinemaControl controll){
-        this.controll = controll;
+    public CinemaView(CinemaControl control){
+        this.control = control;
     }
     private void createPanel(){
         getCatalog = new Button("Get Catalog");
@@ -57,10 +59,52 @@ public class CinemaView {
 
     }
     private void addEvent(){
-//      getCatalog.add;
-//      getFilm.
-//      reserveSeat.
-//      getReservations.
+      getCatalog.addEventHandler(ActionEvent.ACTION, new EventHandler<ActionEvent>() {
+          @Override
+          public void handle(ActionEvent actionEvent) {
+//              control.getPresentationAdmin().getAllPresentations();
+              SmallWindow smallWindow = new SmallWindow(new String[]{});
+              smallWindow.startWin();
+
+          }
+      });
+
+      getFilm.addEventHandler(ActionEvent.ACTION, new EventHandler<ActionEvent>() {
+        @Override
+        public void handle(ActionEvent actionEvent) {
+//              control.getPresentationAdmin().getAllPresentations();
+            SmallWindow smallWindow = new SmallWindow(new String[]{});
+            smallWindow.startWin();
+
+        }
+    });
+      reserveSeat.addEventHandler(ActionEvent.ACTION, new EventHandler<ActionEvent>() {
+        @Override
+        public void handle(ActionEvent actionEvent) {
+//              control.getPresentationAdmin().getAllPresentations();
+            SmallWindow smallWindow = new SmallWindow(new String[]{});
+            smallWindow.startWin();
+
+        }
+    });
+      getReservations.addEventHandler(ActionEvent.ACTION, new EventHandler<ActionEvent>() {
+        @Override
+        public void handle(ActionEvent actionEvent) {
+//              control.getPresentationAdmin().getAllPresentations();
+            SmallWindow smallWindow = new SmallWindow(new String[]{});
+            smallWindow.startWin();
+
+        }
+    });
+      removeReservation.addEventHandler(ActionEvent.ACTION, new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+//              control.getPresentationAdmin().getAllPresentations();
+                SmallWindow smallWindow = new SmallWindow(new String[]{});
+                smallWindow.startWin();
+
+            }
+        });
     }
     public Scene createView(){
         createPanel();
