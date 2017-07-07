@@ -1,3 +1,4 @@
-Alien Covenant;122;Horror;2017;USK 16;
-Spider-Man: Homecoming;133;Action;2017;USK 12;
-In the Deep;87;Horror;2017;USK 14;Die Mumie;111;Horror;2017;USK 12;
+Alien Covenant;122;Best movie that will be released in 2017. Another fine addition to the alien collection;
+Spider-Man: Homecoming;133;Once again a spiderman movie, let's hope it won't be another fail.;
+In the Deep;87;Prolly sum weird shark and drowning obsessed horror movie.;
+Die Mumie;111;Here it is. Not the movie we wanted but the one we needed.;
