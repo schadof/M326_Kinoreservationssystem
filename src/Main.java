@@ -12,7 +12,7 @@ public class Main {
         CinemaManagement cinemaManagement = new CinemaManagement();
         cinemaManagement.getMovieAdmin().addMovie(new Movie("Test", Duration.of(2, HOURS),"This is a test"));
         cinemaManagement.getClientAdmin().addClient(new Client("Lars","1234567","Test@test.ch","Zuhause"));
-        cinemaManagement.getRoomAdmin().createRoom(Utility.Array_Create(new Row[]{
+        cinemaManagement.getRoomAdmin().createRoom("Room1", Utility.Array_Create(new Row[]{
                 new Row(10),
                 new Row(20)
         }));

@@ -2,9 +2,12 @@ import java.util.ArrayList;
 
 public class CinemaRoom {
 
+    private String ID;
+
     private ArrayList<Row> rows;
 
-    public CinemaRoom(ArrayList rows){
+    public CinemaRoom(String ID, ArrayList rows){
+        this.ID = ID;
         this.rows = rows;
     }
 
@@ -15,4 +18,6 @@ public class CinemaRoom {
     public ArrayList<Row> getAllRows(){
         return rows;
     }
+
+    public String getID() {return ID;}
 }

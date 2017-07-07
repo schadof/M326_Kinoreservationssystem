@@ -3,9 +3,12 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.time.Duration;
+import java.time.Instant;
 import java.util.ArrayList;
 
 public class DataReader {
+
+
 
     //singleton instance
     private static DataReader instance;
@@ -53,11 +56,59 @@ public class DataReader {
     public ArrayList<CinemaRoom> readRooms(String filename){
         ArrayList<String> content = read(filename);
         ArrayList<CinemaRoom> result = new ArrayList<>();
+
         for (String line  : content) {
             ArrayList<String> parts = Utility.Array_ToList(line.split(";"));
             ArrayList<Row> rows = new ArrayList<>();
-            for (String part: parts) rows.add(new Row(Integer.parseInt(part)));
-            result.add( new CinemaRoom(rows));
+
+            for (int i = 1 ; i < parts.size(); i++) {
+                String part = parts.get(i);
+                rows.add(new Row(Integer.parseInt(part)));
+            }
+
+            result.add( new CinemaRoom(parts.get(0), rows));
+        }
+        return result;
+    }
+    public ArrayList<Presentation> readPresentations(){return readPresentations("presentations.txt");}
+    public ArrayList<Presentation> readPresentations(String filename) { return readPresentations(filename, "rooms.txt", "movies.txt"); }
+    public ArrayList<Presentation> readPresentations(String filename, String roomsFilename, String moviesFilename){
+        ArrayList<String> content = read(filename);
+        ArrayList<Presentation> result = new ArrayList<>();
+        for (String line  : content) {
+            ArrayList<String> parts = Utility.Array_ToList(line.split(";"));
+            result.add(new Presentation(
+                    Instant.parse(parts.get(0)), // Date and Time
+                    Utility.Array_First(readRooms(roomsFilename), cinemaRoom -> cinemaRoom.getID().equals(parts.get(1))), // Room ID
+                    Utility.Array_First(readMovies(moviesFilename), movie -> movie.getTitle().equals(parts.get(2))) // Movie name
+            ));
+        }
+        return result;
+    }
+
+    public ArrayList<Reservation> readReservations(){return readReservations("reservations.txt");}
+    public ArrayList<Reservation> readReservations(String filename){
+        return readReservations(
+                "reservations.txt",
+                "clients.txt",
+                "presentations.txt",
+                "rooms.txt",
+                "movies.txt");
+    }
+    public ArrayList<Reservation> readReservations(String filename, String clientFilename, String presentationFilename, String roomFilename, String moviesFilename){
+        ArrayList<String> content = read(filename);
+        ArrayList<Reservation> result = new ArrayList<>();
+        for (String line  : content) {
+            ArrayList<String> parts = Utility.Array_ToList(line.split(";"));
+            Client clt = Utility.Array_First(readClients(clientFilename), client -> client.getName().equals(parts.get(0)));
+            Presentation pres = Utility.Array_First(readPresentations(presentationFilename, roomFilename, moviesFilename),
+                    presentation ->
+                            presentation.getRoom().getID().equals(parts.get(1)) && // Room ID
+                                    presentation.getMovie().getTitle().equals(parts.get(2)) && // Movie Title
+                                    presentation.getStart().equals(Instant.parse(parts.get(3)))); // Presentation Time
+            Seat seat = pres.getRoom().getAllRows().get(Integer.parseInt(parts.get(4))) // Row Number
+                    .getSeats().get(Integer.parseInt(parts.get(5))); // Column/Seat Number
+            result.add( new Reservation( clt, pres, seat) );
         }
         return result;
     }
