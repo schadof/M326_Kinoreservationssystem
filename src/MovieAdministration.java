@@ -16,12 +16,7 @@ public class MovieAdministration {
 
     //Certainly useful ~silvan
     public Movie getMovieByName(String title){
-        for(Movie movie : movies) {
-            if(movie.getTitle().equals(title)){
-                return movie;
-            }
-        }
-        return null;
+        return Utility.Array_First(movies, movie -> movie.getTitle().equals(title));
     }
 
 }

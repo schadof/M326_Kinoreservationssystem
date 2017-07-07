@@ -1,18 +1,6 @@
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.function.Predicate;
-
-
-/*
- * Generics dont work well with java, we should replace them with ArrayList
- */
-
-/*
- * Nope, it's not the generics, it's that the arraylists are implicitly convertible to arrays,
- * I'm gonna shorten the code again to work with arraylists.
- */
-
-
 /**
  * Contains various methods for easier programming
  * Created by silvan on 21.06.2017.

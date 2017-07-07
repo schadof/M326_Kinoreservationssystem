@@ -1,11 +1,11 @@
 import java.time.Duration;
 import java.time.Instant;
-import java.util.ArrayList;
 
 import static java.time.temporal.ChronoUnit.HOURS;
 
 public class Main {
     public static void main(String[] args) {
+
         Instant startTime = Instant.now();
 
         CinemaManagement cinemaManagement = new CinemaManagement();
