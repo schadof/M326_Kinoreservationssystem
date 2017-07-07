@@ -35,8 +35,8 @@ public class Main {
         System.out.println(reservation.getSeat().getNumber());
         System.out.println(reservation.getClient().getName());
 
-        MyReader myReader = new MyReader();
-        myReader.generateNodeList("films.xml");
-        myReader.generateNodeList("clients.xml");
+        DataReader myReader = DataReader.getInstance();
+        myReader.readClients();
+        myReader.readMovies();
     }
 }
