@@ -49,6 +49,19 @@ public class DataReader {
         }
         return result;
     }
+    public ArrayList<CinemaRoom> readRooms(){return readRooms("rooms.txt");}
+    public ArrayList<CinemaRoom> readRooms(String filename){
+        ArrayList<String> content = read(filename);
+        ArrayList<CinemaRoom> result = new ArrayList<>();
+        for (String line  : content) {
+            ArrayList<String> parts = Utility.Array_ToList(line.split(";"));
+            ArrayList<Row> rows = new ArrayList<>();
+            for (String part: parts) rows.add(new Row(Integer.parseInt(part)));
+            result.add( new CinemaRoom(rows));
+        }
+        return result;
+    }
+
     private ArrayList<String> read(String filename) {
         ArrayList<String> result = new ArrayList<>();
         String line;

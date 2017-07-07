@@ -1,5 +1,6 @@
 import java.time.Duration;
 import java.time.Instant;
+import java.util.ArrayList;
 
 import static java.time.temporal.ChronoUnit.HOURS;
 
@@ -36,7 +37,7 @@ public class Main {
         System.out.println(reservation.getClient().getName());
 
         DataReader myReader = DataReader.getInstance();
-        myReader.readClients();
-        myReader.readMovies();
+        ArrayList<Client> clients = myReader.readClients();
+        ArrayList<Movie> movies = myReader.readMovies();
     }
 }
