@@ -1,5 +1,8 @@
 import javafx.application.Application;
 import javafx.stage.Stage;
+
+import java.util.ArrayList;
+
 /**
  * Created by 11mmuellerde on 04.07.2017.
  */
@@ -24,6 +27,7 @@ public class CinemaGui extends Application {
         RoomAdministration roomModel    = new RoomAdministration();
         MovieAdministration movieModel  = new MovieAdministration();
         PresentationAdministration presentationModel = new PresentationAdministration();
+
 //      The Control will morph the Data
         CinemaControl control = new CinemaControl(roomModel,presentationModel,movieModel,clientModel);
 //      the View will display it

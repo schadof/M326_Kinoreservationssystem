@@ -1,6 +1,8 @@
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 
+import java.util.ArrayList;
+
 /**
  * Created by 11mmuellerde on 05.07.2017.
  */
@@ -10,7 +12,10 @@ public class CinemaControl {
     private PresentationAdministration presentationModel;
     private MovieAdministration movieModel;
     private ClientAdministration clientModel;
-    private EventHandler<ActionEvent> getCatalog, getFilm, reserveSeat, getReservations, removeReservation;
+    private EventHandler<ActionEvent>
+            getCatalog, getFilm, reserveSeat, getReservations, removeReservation,
+            addClient, removeClient, createPresentation, removePresentation;
+    private SmallWindow smallWindow;
 
     public CinemaControl( RoomAdministration roomModel,
                           PresentationAdministration presentationModel,
@@ -24,7 +29,18 @@ public class CinemaControl {
         createEvents();
 
     }
+    public void createTestData(){
+//      Testdata for Rooms
+        ArrayList<Row> roomRow = new ArrayList<Row>();
+        roomRow.add(new Row(5));
+        roomRow.add(new Row(5));
+        roomRow.add(new Row(5));
+        roomModel.createRoom(roomRow);
 
+//      Testdata for client
+//        clientModel.addClient();
+
+    }
 //  This events will help us Morph the date, the events have a flow, which will help us not code redundant events
 //  the current events will pass the next events after it to smallWindow by reference
     private void createEvents() {
@@ -53,37 +69,53 @@ public class CinemaControl {
         getReservations = new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                smallWindow(new String[]{"Roo", "Date", "Client"}, "get Reservation");
+                smallWindow(new String[]{"Room", "Date", "Client"}, "get Reservation");
+
+            }
+        };
+        removeReservation =new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                smallWindow(new String[]{"Room", "Date", "Client"}, "remove Reservation");
+
+            }
+        };
+        addClient = new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                smallWindow(new String[]{"full Name", "phone", "email"}, "look/add Client");
+
+            }
+        };
+        removeClient = new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                smallWindow(new String[]{"full Name", "phone", "email"}, "remove Client");
+
+            }
+        };
+        createPresentation = new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                smallWindow(new String[]{"Film", "Room", "Date"}, "create Presentation");
+
+            }
+        };
+        removePresentation = new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                smallWindow(new String[]{"Film", "Room", "Date"}, "remove Presentation");
 
             }
         };
     }
     private void smallWindow(String fields[], String title){
-        SmallWindow smallWindow = new SmallWindow(fields,title);
+        if(smallWindow != null){
+            smallWindow.endWin();
+        }
+        smallWindow = new SmallWindow(fields,title);
         smallWindow.startWin();
     }
-
-
-//    public RoomAdministration getRoomAdmin(){
-//        if (roomModel == null)
-//            roomModel = new RoomAdministration();
-//        return roomModel;
-//    }
-//    public MovieAdministration getMovieAdmin(){
-//        if (movieModel == null)
-//            movieModel = new MovieAdministration();
-//        return movieModel;
-//    }
-//    public PresentationAdministration getPresentationAdmin(){
-//        if (presentationModel == null)
-//            presentationModel = new PresentationAdministration();
-//        return presentationModel;
-//    }
-//    public ClientAdministration getClientAdmin(){
-//        if (clientModel == null)
-//            clientModel = new ClientAdministration();
-//        return clientModel;
-//    }
 
     public RoomAdministration getRoomModel() {
         return roomModel;
@@ -119,5 +151,21 @@ public class CinemaControl {
 
     public EventHandler<ActionEvent> getRemoveReservation() {
         return removeReservation;
+    }
+
+    public EventHandler<ActionEvent> getAddClient() {
+        return addClient;
+    }
+
+    public EventHandler<ActionEvent> getCreatePresentation() {
+        return createPresentation;
+    }
+
+    public EventHandler<ActionEvent> getRemovePresentation() {
+        return removePresentation;
+    }
+
+    public EventHandler<ActionEvent> getRemoveClient() {
+        return removeClient;
     }
 }
