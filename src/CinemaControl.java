@@ -1,7 +1,7 @@
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 
-import java.time.Duration;
+import java.time.*;
 import java.util.ArrayList;
 
 /**
@@ -15,7 +15,8 @@ public class CinemaControl {
     private ClientAdministration clientModel;
     private EventHandler<ActionEvent>
             getCatalog, getFilm, reserveSeat, getReservations, removeReservation,
-            addClient, removeClient, createPresentation, removePresentation;
+            addClient, removeClient, createPresentation, removePresentation,
+            getPresInfo;
     private SmallWindow smallWindow;
 
     public CinemaControl( RoomAdministration roomModel,
@@ -28,6 +29,7 @@ public class CinemaControl {
         this.movieModel = movieModel;
         this.presentationModel = presentationModel;
         createEvents();
+        createTestData();
 
     }
     public void createTestData(){
@@ -95,23 +97,43 @@ public class CinemaControl {
             @Override
             public void handle(ActionEvent actionEvent) {
                 smallWindow(new String[]{"full Name", "phone", "email"}, "remove Client", null);
-
             }
         };
         createPresentation = new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                smallWindow(new String[]{"Film", "Room", "Date"}, "create Presentation", null);
-
-
+                smallWindow(new String[]{"Film", "Room", "Date"}, "create Presentation", getPresInfo);
             }
         };
         removePresentation = new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
                 smallWindow(new String[]{"Film", "Room", "Date"}, "remove Presentation", null);
+            }
+        };
+        getPresInfo = new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                String parameters[] = smallWindow.getText();
+                int i;
+                try {
+                    i = (Integer.parseInt(parameters[1]) - 1);
+
+                    LocalDate localDate = LocalDate.parse(parameters[2]);
+                    LocalDateTime localDateTime = localDate.atStartOfDay();
+                    Instant instant = localDateTime.toInstant(ZoneOffset.UTC);
+
+                    presentationModel.createPresentation(movieModel.getMovieByName(parameters[0]),
+                                                         roomModel.getRoom(i),
+                                                        instant);
+                    smallWindow.popup("successfull created");
+                }
+                catch (NullPointerException ne){
+                   smallWindow.popup("could not be created");
+                }
 
             }
+
         };
     }
     private void smallWindow(String fields[], String title, EventHandler<ActionEvent> multiEvent){

@@ -1,10 +1,10 @@
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 import java.util.ArrayList;
@@ -38,6 +38,16 @@ public class SmallWindow {
             txtField.add(new TextField());
         }
 
+    }
+    public void popup(String input){
+        stage.setScene(new Scene( new Label(input), 100, 100));
+    }
+    public String[] getText(){
+        String parameters[] = new String[label.size()];
+        for(int i = 0; i < label.size(); i++) {
+            parameters[i] = txtField.get(i).getText();
+        }
+        return parameters;
     }
     public void endWin(){
         stage.close();
