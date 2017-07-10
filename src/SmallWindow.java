@@ -1,9 +1,8 @@
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
@@ -22,10 +21,15 @@ public class SmallWindow {
     private String title;
     private FlowPane flow;
     private Stage stage;
+    private Button multiButton;
 
-    public SmallWindow(String names[],String title){
+    public SmallWindow(String names[],String title, EventHandler<ActionEvent> multiEvent){
 
         this.title = title;
+        if(multiEvent != null) {
+            this.multiButton = new Button("ok");
+            this.multiButton.addEventHandler(ActionEvent.ACTION, multiEvent);
+        }
 
         label = new ArrayList<Label>();
         txtField = new ArrayList<TextField>();
@@ -47,6 +51,9 @@ public class SmallWindow {
         for (int i = 0; i < label.size(); i++) {
             grid.add(label.get(i), 1, i);
             grid.add(txtField.get(i), 2, i);
+            if(multiButton != null && i + 1 >= label.size() ){
+                grid.add(multiButton,1, i+1 );
+            }
         }
 
         flow = new FlowPane(grid);

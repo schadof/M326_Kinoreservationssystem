@@ -1,6 +1,7 @@
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 
+import java.time.Duration;
 import java.util.ArrayList;
 
 /**
@@ -37,6 +38,9 @@ public class CinemaControl {
         roomRow.add(new Row(5));
         roomModel.createRoom(roomRow);
 
+//      Testdata for Film
+        movieModel.addMovie(new Movie("The White Bear", Duration.ofSeconds(60), "The evil White Bear"));
+
 //      Testdata for client
 //        clientModel.addClient();
 
@@ -47,7 +51,7 @@ public class CinemaControl {
         getCatalog = new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                smallWindow(new String[]{"Date", "Film", "Seat"}, "Get Catalog");
+                smallWindow(new String[]{"Date", "Film", "Seat"}, "Get Catalog",reserveSeat);
 
             }
         };
@@ -55,65 +59,67 @@ public class CinemaControl {
         getFilm = new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                smallWindow(new String[]{"Date", "Time", "Room"}, "Get Film");
+                smallWindow(new String[]{"Date", "Time", "Room"}, "Get Film",reserveSeat);
 
             }
         };
         reserveSeat = new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                smallWindow(new String[]{"Room", "Date"}, "Reserve Seat");
+                smallWindow(new String[]{"Room", "Date"}, "Reserve Seat",null);
 
             }
         };
         getReservations = new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                smallWindow(new String[]{"Room", "Date", "Client"}, "get Reservation");
+                smallWindow(new String[]{"Room", "Date", "Client"}, "get Reservation",null);
 
             }
         };
         removeReservation =new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                smallWindow(new String[]{"Room", "Date", "Client"}, "remove Reservation");
+                smallWindow(new String[]{"Room", "Date", "Client"}, "remove Reservation", null);
 
             }
         };
         addClient = new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                smallWindow(new String[]{"full Name", "phone", "email"}, "look/add Client");
+                smallWindow(new String[]{"full Name", "phone", "email"}, "look/add Client", null);
 
             }
         };
         removeClient = new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                smallWindow(new String[]{"full Name", "phone", "email"}, "remove Client");
+                smallWindow(new String[]{"full Name", "phone", "email"}, "remove Client", null);
 
             }
         };
         createPresentation = new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                smallWindow(new String[]{"Film", "Room", "Date"}, "create Presentation");
+                smallWindow(new String[]{"Film", "Room", "Date"}, "create Presentation", null);
+
 
             }
         };
         removePresentation = new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                smallWindow(new String[]{"Film", "Room", "Date"}, "remove Presentation");
+                smallWindow(new String[]{"Film", "Room", "Date"}, "remove Presentation", null);
 
             }
         };
     }
-    private void smallWindow(String fields[], String title){
+    private void smallWindow(String fields[], String title, EventHandler<ActionEvent> multiEvent){
         if(smallWindow != null){
             smallWindow.endWin();
+            smallWindow = null;
         }
-        smallWindow = new SmallWindow(fields,title);
+        smallWindow = new SmallWindow(fields,title, multiEvent);
         smallWindow.startWin();
     }
 
