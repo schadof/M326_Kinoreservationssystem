@@ -37,7 +37,7 @@ public class CinemaControl {
         roomRow.add(new Row(5));
         roomRow.add(new Row(5));
         roomRow.add(new Row(5));
-        roomModel.createRoom(roomRow);
+        roomModel.createRoom("Room01", roomRow);
 
 //      Testdata for Film
         movieModel.addMovie(new Movie("The White Bear", Duration.ofSeconds(60), "The evil White Bear"));
