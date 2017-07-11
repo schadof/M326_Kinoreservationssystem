@@ -77,26 +77,32 @@ public class CinemaControl {
         addClient = new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-
+                Client client = new Client(smallWindow.getText()[0],smallWindow.getText()[1], smallWindow.getText()[2], smallWindow.getText()[3]);
+                clientModel.addClient(client);
+                smallWindow.popup("successfull created");
             }
         };
         removeClient = new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-
+                Client client = clientModel.getClientByName(smallWindow.getText()[0]);
+                clientModel.getClients().remove(client);
+                smallWindow.popup("successfull removed");
             }
         };
         removePresentation = new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
                 try {
-                    String parameters[] = smallWindow.getText();
-                    int  i = (Integer.parseInt(parameters[1]) - 1);
-                    LocalDate localDate = LocalDate.parse(parameters[2]);
-                    LocalDateTime localDateTime = localDate.atStartOfDay();
-                    Instant instant = localDateTime.toInstant(ZoneOffset.UTC);
-                    presentationModel. removePresentation(presentationModel.getPresentation(movieModel.getMovieByName(parameters[0]),  instant, roomModel.getRoom(i)));
-                    smallWindow.popup("successfull removal");
+                    PresInfo info = getScreenInfo();
+                    presentationModel. removePresentation(
+                            presentationModel.getPresentation(
+                                    movieModel.getMovieByName(info.getParameters()[0]),info.getDate(),
+                                    roomModel.getRoom(info.getRoomNum()
+                                    )
+                            )
+                    );
+                    smallWindow.popup("successful removal");
                 }
                 catch (NullPointerException ne){
                     smallWindow.popup("could not be removed");
@@ -107,13 +113,12 @@ public class CinemaControl {
             @Override
             public void handle(ActionEvent actionEvent) {
                 try {
-                    String parameters[] = smallWindow.getText();
-                    int  i = (Integer.parseInt(parameters[1]) - 1);
-                    LocalDate localDate = LocalDate.parse(parameters[2]);
-                    LocalDateTime localDateTime = localDate.atStartOfDay();
-                    Instant instant = localDateTime.toInstant(ZoneOffset.UTC);
-
-                    presentationModel.createPresentation(movieModel.getMovieByName(parameters[0]), roomModel.getRoom(i), instant);
+                    PresInfo info = getScreenInfo();
+                    presentationModel.createPresentation(
+                            movieModel.getMovieByName(info.getParameters()[0]),
+                            roomModel.getRoom(info.getRoomNum()),
+                            info.getDate()
+                    );
                     smallWindow.popup("successfull created");
                 }
                 catch (NullPointerException ne){
@@ -121,6 +126,15 @@ public class CinemaControl {
                 }
             }
         };
+    }
+    private PresInfo getScreenInfo(){
+
+        PresInfo info = new PresInfo();
+        info.setParameters(smallWindow.getText());
+        info.setRoomNum(Integer.parseInt(info.getParameters()[1]) - 1);
+        info.setDate( LocalDate.parse(info.getParameters()[2]).atStartOfDay().toInstant(ZoneOffset.UTC));
+
+        return info;
     }
     private void smallWindow(String fields[], String title, EventHandler<ActionEvent> multiEvent){
         if(smallWindow != null){

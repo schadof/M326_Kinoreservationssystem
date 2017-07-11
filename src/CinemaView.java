@@ -83,9 +83,9 @@ public class CinemaView {
       removeReservation.addEventHandler(ActionEvent.ACTION, control.eventFactory(
               new String[]{"Room", "Date", "Client"}, "remove Reservation", control.getRemoveReservation()));
       addClient.addEventHandler(ActionEvent.ACTION, control.eventFactory(
-              new String[]{"full Name", "phone", "email"}, "look/add Client", control.getAddClient()));
+              new String[]{"Full Name", "Phone", "E-Mail","Address"}, "add Client", control.getAddClient()));
       removeClient.addEventHandler(ActionEvent.ACTION, control.eventFactory(
-              new String[]{"full Name", "phone", "email"}, "remove Client", control.getRemoveClient()));
+              new String[]{"Full Name"}, "remove Client", control.getRemoveClient()));
       createPresentaion.addEventHandler(ActionEvent.ACTION, control.eventFactory(
               new String[]{"Film", "Room", "Date"}, "create Presentation", control.getPresInfo()));
       removePresentation.addEventHandler(ActionEvent.ACTION, control.eventFactory(
