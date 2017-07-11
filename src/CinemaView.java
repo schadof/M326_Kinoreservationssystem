@@ -14,7 +14,7 @@ import javafx.scene.paint.Color;
  */
 public class CinemaView {
     private Button
-            getCatalog, getFilm, reserveSeat, getReservations, removeReservation
+            getCatalog, getFilm, getReservations, removeReservation
             , addClient, removeClient, createPresentaion, removePresentation;
     private GridPane grid;
     private BorderPane border;
@@ -30,7 +30,6 @@ public class CinemaView {
 //      Screen Buttons
         getCatalog = new Button("Get Catalog");
         getFilm = new Button("Get Film Presentation");
-        reserveSeat = new Button("Reserve a Seat");
         getReservations = new Button("Show Client Reservation");
         removeReservation = new Button("end Client Reservation");
         addClient = new Button("Add Client");
@@ -40,7 +39,6 @@ public class CinemaView {
 
         getCatalog.setPrefSize(200,20);
         getFilm.setPrefSize(200,20);
-        reserveSeat.setPrefSize(200,20);
         getReservations.setPrefSize(200,20);
         removeReservation.setPrefSize(200,20);
         addClient.setPrefSize(200,20);
@@ -59,8 +57,7 @@ public class CinemaView {
         border = new BorderPane();
 
         grid.add(getCatalog, 1,1);
-        grid.add(getFilm, 1,2);
-        grid.add(reserveSeat, 1,3);
+        grid.add(getFilm, 1,3);
         grid.add(removeReservation, 1,4);
         grid.add(addClient, 1,5);
         grid.add(removeClient, 1,6);
@@ -77,15 +74,14 @@ public class CinemaView {
         mainScene = new Scene(border,500,300);
     }
     private void addEvent(){
-      getCatalog.addEventHandler(ActionEvent.ACTION, control.getGetCatalog());
-      getFilm.addEventHandler(ActionEvent.ACTION, control.getGetFilm());
-      reserveSeat.addEventHandler(ActionEvent.ACTION, control.getReserveSeat());
-      getReservations.addEventHandler(ActionEvent.ACTION, control.getGetReservations());
-      removeReservation.addEventHandler(ActionEvent.ACTION, control.getRemoveReservation());
-      addClient.addEventHandler(ActionEvent.ACTION, control.getAddClient());
-      removeClient.addEventHandler(ActionEvent.ACTION, control.getRemoveClient());
-      createPresentaion.addEventHandler(ActionEvent.ACTION, control.getCreatePresentation());
-      removePresentation.addEventHandler(ActionEvent.ACTION, control.getRemovePresentation());
+      getCatalog.addEventHandler(ActionEvent.ACTION, control.eventFactory(new String[]{"Date"}, "Get Catalog", control.getReserveSeat()));
+      getFilm.addEventHandler(ActionEvent.ACTION, control.eventFactory(new String[]{"Date", "Time", "Room"}, "Get Film", control.getReserveSeat()));
+      getReservations.addEventHandler(ActionEvent.ACTION, control.eventFactory(new String[]{"Room", "Date", "Client"}, "get Reservation",null));
+      removeReservation.addEventHandler(ActionEvent.ACTION, control.eventFactory(new String[]{"Room", "Date", "Client"}, "remove Reservation", control.getRemoveReservation()));
+      addClient.addEventHandler(ActionEvent.ACTION, control.eventFactory(new String[]{"full Name", "phone", "email"}, "look/add Client", control.getAddClient()));
+      removeClient.addEventHandler(ActionEvent.ACTION, control.eventFactory(new String[]{"full Name", "phone", "email"}, "remove Client", control.getRemoveClient()));
+      createPresentaion.addEventHandler(ActionEvent.ACTION, control.eventFactory(new String[]{"Film", "Room", "Date"}, "create Presentation", control.getPresInfo()));
+      removePresentation.addEventHandler(ActionEvent.ACTION, control.eventFactory(new String[]{"Film", "Room", "Date"}, "remove Presentation", control.getRemovePresentation()));
     }
     public Scene createView(){
         createPanel();

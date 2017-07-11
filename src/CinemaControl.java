@@ -1,6 +1,5 @@
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-
 import java.time.*;
 import java.util.ArrayList;
 
@@ -14,8 +13,8 @@ public class CinemaControl {
     private MovieAdministration movieModel;
     private ClientAdministration clientModel;
     private EventHandler<ActionEvent>
-            getCatalog, getFilm, reserveSeat, getReservations, removeReservation,
-            addClient, removeClient, createPresentation, removePresentation,
+            reserveSeat, removeReservation,
+            addClient, removeClient, removePresentation,
             getPresInfo;
     private SmallWindow smallWindow;
 
@@ -28,7 +27,7 @@ public class CinemaControl {
         this.roomModel  = roomModel;
         this.movieModel = movieModel;
         this.presentationModel = presentationModel;
-        createEvents();
+        createEvent();
         createTestData();
 
     }
@@ -49,66 +48,48 @@ public class CinemaControl {
     }
 //  This events will help us Morph the date, the events have a flow, which will help us not code redundant events
 //  the current events will pass the next events after it to smallWindow by reference
-    private void createEvents() {
-        getCatalog = new EventHandler<ActionEvent>() {
+    public EventHandler<ActionEvent> eventFactory(String labels[], String title, EventHandler<ActionEvent> multiEvent) {
+        EventHandler<ActionEvent> request;
+
+        request = new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                smallWindow(new String[]{"Date", "Film", "Seat"}, "Get Catalog",reserveSeat);
-
+                smallWindow(labels, title,multiEvent);
             }
         };
 
-        getFilm = new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-                smallWindow(new String[]{"Date", "Time", "Room"}, "Get Film",reserveSeat);
+        return  request;
+    }
 
-            }
-        };
+    private void createEvent(){
         reserveSeat = new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                smallWindow(new String[]{"Room", "Date"}, "Reserve Seat",null);
-
-            }
-        };
-        getReservations = new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-                smallWindow(new String[]{"Room", "Date", "Client"}, "get Reservation",null);
+                //smallWindow(new String[]{"Room", "Date"}, "Reserve Seat",null);
 
             }
         };
         removeReservation =new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                smallWindow(new String[]{"Room", "Date", "Client"}, "remove Reservation", null);
 
             }
         };
         addClient = new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                smallWindow(new String[]{"full Name", "phone", "email"}, "look/add Client", null);
 
             }
         };
         removeClient = new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                smallWindow(new String[]{"full Name", "phone", "email"}, "remove Client", null);
-            }
-        };
-        createPresentation = new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-                smallWindow(new String[]{"Film", "Room", "Date"}, "create Presentation", getPresInfo);
+
             }
         };
         removePresentation = new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                smallWindow(new String[]{"Film", "Room", "Date"}, "remove Presentation", null);
             }
         };
         getPresInfo = new EventHandler<ActionEvent>() {
@@ -131,7 +112,6 @@ public class CinemaControl {
                 catch (NullPointerException ne){
                    smallWindow.popup("could not be created");
                 }
-
             }
 
         };
@@ -145,36 +125,8 @@ public class CinemaControl {
         smallWindow.startWin();
     }
 
-    public RoomAdministration getRoomModel() {
-        return roomModel;
-    }
-
-    public PresentationAdministration getPresentationModel() {
-        return presentationModel;
-    }
-
-    public MovieAdministration getMovieModel() {
-        return movieModel;
-    }
-
-    public ClientAdministration getClientModel() {
-        return clientModel;
-    }
-
-    public EventHandler<ActionEvent> getGetCatalog() {
-        return getCatalog;
-    }
-
-    public EventHandler<ActionEvent> getGetFilm() {
-        return getFilm;
-    }
-
     public EventHandler<ActionEvent> getReserveSeat() {
         return reserveSeat;
-    }
-
-    public EventHandler<ActionEvent> getGetReservations() {
-        return getReservations;
     }
 
     public EventHandler<ActionEvent> getRemoveReservation() {
@@ -185,8 +137,8 @@ public class CinemaControl {
         return addClient;
     }
 
-    public EventHandler<ActionEvent> getCreatePresentation() {
-        return createPresentation;
+    public EventHandler<ActionEvent> getPresInfo() {
+        return getPresInfo;
     }
 
     public EventHandler<ActionEvent> getRemovePresentation() {
