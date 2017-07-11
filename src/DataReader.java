@@ -106,8 +106,8 @@ public class DataReader {
                             presentation.getRoom().getID().equals(parts.get(1)) && // Room ID
                                     presentation.getMovie().getTitle().equals(parts.get(2)) && // Movie Title
                                     presentation.getStart().equals(Instant.parse(parts.get(3)))); // Presentation Time
-            Seat seat = pres.getRoom().getAllRows().get(Integer.parseInt(parts.get(4))) // Row Number
-                    .getSeats().get(Integer.parseInt(parts.get(5))); // Column/Seat Number
+            Seat seat = pres.getRoom().getAllRows().get(Integer.parseInt(parts.get(4))-1) // Row Number
+                    .getSeats().get(Integer.parseInt(parts.get(5))-1); // Column/Seat Number
             result.add( new Reservation( clt, pres, seat) );
         }
         return result;

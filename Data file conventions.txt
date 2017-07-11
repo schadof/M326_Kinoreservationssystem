@@ -1,0 +1,68 @@
+All data files:
+
+ - One instance per line unless stated otherwise
+ - PREVENT stray ';' characters. Delete them if neccessary
+ - Data portions seperated by ';'
+
+Time in files in following format:
+YYYY-MM-DDThh:mm:ss.nnZ
+####-##-##T##:##:##.##Z
+
+Y - Year
+M - Month
+D - Day
+T - no clue
+h - Hour
+m - Minute
+s - Second
+n - Millisecond
+Z - no clue
+
+Example:
+2016-07-07T15:06:22.16Z
+------------------------------------------------------------------------------------------
+			clients.txt
+ 1. Full Name
+ 2. Phone Number
+ 3. Email
+ 4. Adress
+ 
+Example:
+Hans Muster;11111122333;hans.muster@isa.fag;feggitstreed 122, Stockolm Syndrome
+------------------------------------------------------------------------------------------
+			movies.txt
+1. Title
+2. Duration in minutes
+3. Description
+
+Example:
+Pingu der Film;120;Der beste Film aller Zeiten du feggit
+------------------------------------------------------------------------------------------
+			rooms.txt
+1. ID of the room
+2. Length of first row
+3. Length of second row
+4. Length of the third row
+5. ...
+...
+
+Examples:
+FirstLeft;12;13;14;13;12
+Basement;1
+------------------------------------------------------------------------------------------
+			presentations.txt
+1. Date & Time (Better keep this simple)
+2. Room ID (needs to match the ID in rooms.txt)
+3. Movie Title (needs to match the title in movies.txt)
+Example:
+2017-07-27T20:00:00.00Z;Basement;Pingu der Film
+------------------------------------------------------------------------------------------
+			Reservations.txt
+1. Full Client Name (Needs to match the name in clients.txt
+2. Presentation Room ID
+3. Presentation Movie Title
+4. Presentation Presentation Time
+5. Seat Row Number
+6. Seat Number
+Example:
+Hans Muster;Basement;Pingu der Film;2017-07-27T20:00:00.00Z;1;1
