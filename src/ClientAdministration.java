@@ -23,4 +23,8 @@ public class ClientAdministration {
     public Client getClientByAddress(String address){
         return Utility.Array_First(clients, client -> client.getAddress().equals(address));
     }
+
+    public ArrayList<Client> getClients() {
+        return clients;
+    }
 }
