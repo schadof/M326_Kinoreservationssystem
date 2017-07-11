@@ -65,7 +65,6 @@ public class CinemaControl {
         reserveSeat = new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                //smallWindow(new String[]{"Room", "Date"}, "Reserve Seat",null);
 
             }
         };
@@ -90,30 +89,37 @@ public class CinemaControl {
         removePresentation = new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
+                try {
+                    String parameters[] = smallWindow.getText();
+                    int  i = (Integer.parseInt(parameters[1]) - 1);
+                    LocalDate localDate = LocalDate.parse(parameters[2]);
+                    LocalDateTime localDateTime = localDate.atStartOfDay();
+                    Instant instant = localDateTime.toInstant(ZoneOffset.UTC);
+                    presentationModel. removePresentation(presentationModel.getPresentation(movieModel.getMovieByName(parameters[0]),  instant, roomModel.getRoom(i)));
+                    smallWindow.popup("successfull removal");
+                }
+                catch (NullPointerException ne){
+                    smallWindow.popup("could not be removed");
+                }
             }
         };
         getPresInfo = new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                String parameters[] = smallWindow.getText();
-                int i;
                 try {
-                    i = (Integer.parseInt(parameters[1]) - 1);
-
+                    String parameters[] = smallWindow.getText();
+                    int  i = (Integer.parseInt(parameters[1]) - 1);
                     LocalDate localDate = LocalDate.parse(parameters[2]);
                     LocalDateTime localDateTime = localDate.atStartOfDay();
                     Instant instant = localDateTime.toInstant(ZoneOffset.UTC);
 
-                    presentationModel.createPresentation(movieModel.getMovieByName(parameters[0]),
-                                                         roomModel.getRoom(i),
-                                                        instant);
+                    presentationModel.createPresentation(movieModel.getMovieByName(parameters[0]), roomModel.getRoom(i), instant);
                     smallWindow.popup("successfull created");
                 }
                 catch (NullPointerException ne){
-                   smallWindow.popup("could not be created");
+                    smallWindow.popup("could not be created");
                 }
             }
-
         };
     }
     private void smallWindow(String fields[], String title, EventHandler<ActionEvent> multiEvent){

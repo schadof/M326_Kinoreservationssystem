@@ -74,14 +74,22 @@ public class CinemaView {
         mainScene = new Scene(border,500,300);
     }
     private void addEvent(){
-      getCatalog.addEventHandler(ActionEvent.ACTION, control.eventFactory(new String[]{"Date"}, "Get Catalog", control.getReserveSeat()));
-      getFilm.addEventHandler(ActionEvent.ACTION, control.eventFactory(new String[]{"Date", "Time", "Room"}, "Get Film", control.getReserveSeat()));
-      getReservations.addEventHandler(ActionEvent.ACTION, control.eventFactory(new String[]{"Room", "Date", "Client"}, "get Reservation",null));
-      removeReservation.addEventHandler(ActionEvent.ACTION, control.eventFactory(new String[]{"Room", "Date", "Client"}, "remove Reservation", control.getRemoveReservation()));
-      addClient.addEventHandler(ActionEvent.ACTION, control.eventFactory(new String[]{"full Name", "phone", "email"}, "look/add Client", control.getAddClient()));
-      removeClient.addEventHandler(ActionEvent.ACTION, control.eventFactory(new String[]{"full Name", "phone", "email"}, "remove Client", control.getRemoveClient()));
-      createPresentaion.addEventHandler(ActionEvent.ACTION, control.eventFactory(new String[]{"Film", "Room", "Date"}, "create Presentation", control.getPresInfo()));
-      removePresentation.addEventHandler(ActionEvent.ACTION, control.eventFactory(new String[]{"Film", "Room", "Date"}, "remove Presentation", control.getRemovePresentation()));
+      getCatalog.addEventHandler(ActionEvent.ACTION, control.eventFactory(
+              new String[]{"Date"}, "Get Catalog", control.getReserveSeat()));
+      getFilm.addEventHandler(ActionEvent.ACTION, control.eventFactory(
+              new String[]{"Date", "Time", "Room"}, "Get Film", control.getReserveSeat()));
+      getReservations.addEventHandler(ActionEvent.ACTION, control.eventFactory(
+              new String[]{"Room", "Date", "Client"}, "get Reservation",null));
+      removeReservation.addEventHandler(ActionEvent.ACTION, control.eventFactory(
+              new String[]{"Room", "Date", "Client"}, "remove Reservation", control.getRemoveReservation()));
+      addClient.addEventHandler(ActionEvent.ACTION, control.eventFactory(
+              new String[]{"full Name", "phone", "email"}, "look/add Client", control.getAddClient()));
+      removeClient.addEventHandler(ActionEvent.ACTION, control.eventFactory(
+              new String[]{"full Name", "phone", "email"}, "remove Client", control.getRemoveClient()));
+      createPresentaion.addEventHandler(ActionEvent.ACTION, control.eventFactory(
+              new String[]{"Film", "Room", "Date"}, "create Presentation", control.getPresInfo()));
+      removePresentation.addEventHandler(ActionEvent.ACTION, control.eventFactory(
+              new String[]{"Film", "Room", "Date"}, "remove Presentation", control.getRemovePresentation()));
     }
     public Scene createView(){
         createPanel();
