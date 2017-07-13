@@ -73,11 +73,11 @@ public class SmallWindow {
         stage.show();
     }
 //  This will allow us to dynamically set aur selectionparameters
-    public void selectionScreen(String screenInfo[], String screenLayout){
+    public void selectionScreen(ArrayList<String> screenInfo, String screenLayout){
         checklist = new ArrayList<>();
         ScrollPane scroll = new ScrollPane();
-        for (int i = 0; i < screenInfo.length; i++){
-            checklist.add(new CheckBox(screenInfo[i]));
+        for (int i = 0; i < screenInfo.size(); i++){
+            checklist.add(new CheckBox(screenInfo.get(i)));
             scroll.setContent(checklist.get(i));
         }
         flow.getChildren().add(scroll);

@@ -75,7 +75,7 @@ public class CinemaView {
     }
     private void addEvent(){
       getCatalog.addEventHandler(ActionEvent.ACTION, control.eventFactory(
-              new String[]{"Date"}, "Get Catalog", control.getReserveSeat()));
+              new String[]{"Date"}, "Get Catalog", control.getGetPresentation()));
       getFilm.addEventHandler(ActionEvent.ACTION, control.eventFactory(
               new String[]{"Date", "Time", "Room"}, "Get Film", control.getReserveSeat()));
       getReservations.addEventHandler(ActionEvent.ACTION, control.eventFactory(

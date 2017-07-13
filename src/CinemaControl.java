@@ -15,7 +15,7 @@ public class CinemaControl {
     private EventHandler<ActionEvent>
             reserveSeat, removeReservation,
             addClient, removeClient, removePresentation,
-            getPresInfo;
+            getPresInfo, getPresentation;
     private SmallWindow smallWindow;
 
     public CinemaControl( RoomAdministration roomModel,
@@ -54,7 +54,7 @@ public class CinemaControl {
         request = new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                smallWindow(labels, title,multiEvent);
+                createWindow(labels, title,multiEvent);
             }
         };
 
@@ -62,6 +62,20 @@ public class CinemaControl {
     }
 
     private void createEvent(){
+        getPresentation  = new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                ArrayList<String> screenInfo = new ArrayList<String>();
+                createWindow(new String[]{"Film"}, "Choose Pres",reserveSeat);
+                for(int i = 0; i < presentationModel.getAllPresentations().size(); i++){
+                    if ( presentationModel.getAllPresentations().get(i).getStart() ==
+                            LocalDate.parse(smallWindow.getText()[0]).atStartOfDay().toInstant(ZoneOffset.UTC)){
+                            screenInfo.add(presentationModel.getAllPresentations().get(i).getMovie().getTitle());
+                    }
+                }
+                smallWindow.selectionScreen(screenInfo, "Name");
+            }
+        };
         reserveSeat = new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
@@ -136,7 +150,7 @@ public class CinemaControl {
 
         return info;
     }
-    private void smallWindow(String fields[], String title, EventHandler<ActionEvent> multiEvent){
+    private void createWindow(String fields[], String title, EventHandler<ActionEvent> multiEvent){
         if(smallWindow != null){
             smallWindow.endWin();
             smallWindow = null;
@@ -167,5 +181,9 @@ public class CinemaControl {
 
     public EventHandler<ActionEvent> getRemoveClient() {
         return removeClient;
+    }
+
+    public EventHandler<ActionEvent> getGetPresentation() {
+        return getPresentation;
     }
 }
