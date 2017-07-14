@@ -17,6 +17,7 @@ public class CinemaControl {
             addClient, removeClient, removePresentation,
             getPresInfo, getPresentation, getRoom;
     private SmallWindow smallWindow;
+    private Presentation pres;
 
     public CinemaControl( RoomAdministration roomModel,
                           PresentationAdministration presentationModel,
@@ -41,7 +42,9 @@ public class CinemaControl {
 
 //      Testdata for Film
         movieModel.addMovie(new Movie("The White Bear", Duration.ofSeconds(60), "The evil White Bear"));
-
+        movieModel.addMovie(new Movie("The Black Bear", Duration.ofSeconds(60), "The evil White Bear"));
+        movieModel.addMovie(new Movie("The Yellow Bear", Duration.ofSeconds(60), "The evil White Bear"));
+        movieModel.addMovie(new Movie("The Green Bear", Duration.ofSeconds(60), "The evil White Bear"));
 //      Testdata for client
 //        clientModel.addClient();
 
@@ -65,12 +68,12 @@ public class CinemaControl {
         getPresentation  = new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                ArrayList<String> screenInfo = new ArrayList<String>();
+               String screenInfo[] = new String[ presentationModel.getAllPresentations().size()];
                 Instant userInput = LocalDate.parse(smallWindow.getText()[0]).atStartOfDay().toInstant(ZoneOffset.UTC);
                 for(int i = 0; i < presentationModel.getAllPresentations().size(); i++){
                     Instant presDate = presentationModel.getAllPresentations().get(i).getStart();
                     if (presDate.equals(userInput)){
-                            screenInfo.add(smallWindow.getText()[0]+", "+
+                            screenInfo[i] = (smallWindow.getText()[0]+", "+
                                     presentationModel.getAllPresentations().get(i).getRoom().getID() +", "+
                                     presentationModel.getAllPresentations().get(i).getMovie().getTitle() );
                     }
@@ -82,22 +85,16 @@ public class CinemaControl {
         getRoom = new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                String selection[] = smallWindow.returnSelection().split(", ");
-                Instant presDate = LocalDate.parse(selection[0]).atStartOfDay().toInstant(ZoneOffset.UTC);
-                Movie film = movieModel.getMovieByName(selection[2]);
-                CinemaRoom room = roomModel.getRoom(selection[2]);
-                Presentation pres = presentationModel.getPresentation(film,presDate,room);
-                ArrayList<String> seats = new ArrayList<String>();
-
-                for(int i = 0; i < pres.getRoom().getAllRows().size() * 5; i++){
-                    if(i < pres.getFreeSeats().size()){
-                        seats.add(pres.getFreeSeats().get(i).getNumber()+"");
-                    }
-                    else{
-                        i = pres.getRoom().getAllRows().size() * 5;
+                getPres();
+                String seats[] = new String[pres.getFreeSeats().size()];
+                int rowCount = pres.getRoom().getAllRows().size();
+                for(int j = 0; j < rowCount; j++){
+                    for(int i = 0; i < pres.getRoom().getAllRows().get(j).getSeats().size() ; i++) {
+                        int add = (pres.getRoom().getAllRows().get(j).getSeats().size() * j)+1;
+                       seats[i+add-1] = (pres.getFreeSeats().get(i).getNumber()+add+"");
                     }
                 }
-                createWindow(new String[]{}, "Choose seats",getRoom);
+                createWindow(new String[]{}, "Choose seats",reserveSeat);
                 smallWindow.selectionScreen(seats, "Name");
 
             }
@@ -105,7 +102,10 @@ public class CinemaControl {
         reserveSeat = new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
+                String seats[] = smallWindow.returnSelection().split(", ");
+               for(int i = 0; i < seats.length; i++){
 
+               }
             }
         };
         removeReservation =new EventHandler<ActionEvent>() {
@@ -174,6 +174,13 @@ public class CinemaControl {
 
             }
         };
+    }
+    private  void getPres(){
+        String selection[] = smallWindow.returnSelection().split(", ");
+        Instant presDate = LocalDate.parse(selection[0]).atStartOfDay().toInstant(ZoneOffset.UTC);
+        Movie film = movieModel.getMovieByName(selection[2]);
+        CinemaRoom room = roomModel.getRoom(selection[1]);
+        pres = presentationModel.getPresentation(film,presDate,room);
     }
     private PresInfo getScreenInfo() throws IndexOutOfBoundsException{
 

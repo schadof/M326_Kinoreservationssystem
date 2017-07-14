@@ -19,9 +19,15 @@ public class Presentation {
         ArrayList<Seat> seats = new ArrayList<>();
         for( Row row : room.getAllRows())
             for (Seat seat : row.getSeats()){
-                for(Reservation reservation : reservations)
-                    if (reservation.getSeat() != seat)
-                        seats.add(seat);
+                boolean reserved = false;
+                for(int i = 0; i < reservations.size() && !reserved;i++ ) {
+                    if (reservations.get(i).getSeat() == seat) {
+                        reserved = true;
+                    }
+                }
+                if (!reserved){
+                    seats.add(seat);
+                }
             }
         return seats;
     }
