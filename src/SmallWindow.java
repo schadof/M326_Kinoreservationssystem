@@ -60,9 +60,10 @@ public class SmallWindow {
         for (int i = 0; i < label.size(); i++) {
             grid.add(label.get(i), 1, i);
             grid.add(txtField.get(i), 2, i);
-            if(multiButton != null && i + 1 >= label.size() ){
-                grid.add(multiButton,1, i+1 );
-            }
+
+        }
+        if(multiButton != null){
+            grid.add(multiButton,1, label.size() + 1 );
         }
 
         flow = new FlowPane(Orientation.VERTICAL);

@@ -70,18 +70,36 @@ public class CinemaControl {
                 for(int i = 0; i < presentationModel.getAllPresentations().size(); i++){
                     Instant presDate = presentationModel.getAllPresentations().get(i).getStart();
                     if (presDate.equals(userInput)){
-                            screenInfo.add(presentationModel.getAllPresentations().get(i).getMovie().getTitle() +", "+
-                                    presentationModel.getAllPresentations().get(i).getRoom().getID());
+                            screenInfo.add(smallWindow.getText()[0]+", "+
+                                    presentationModel.getAllPresentations().get(i).getRoom().getID() +", "+
+                                    presentationModel.getAllPresentations().get(i).getMovie().getTitle() );
                     }
                 }
-                createWindow(new String[]{"Film","Room"}, "Choose Pres",reserveSeat);
+                createWindow(new String[]{}, "Choose Pres",getRoom);
                 smallWindow.selectionScreen(screenInfo, "Name");
             }
         };
         getRoom = new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                smallWindow.getText();
+                String selection[] = smallWindow.returnSelection().split(", ");
+                Instant presDate = LocalDate.parse(selection[0]).atStartOfDay().toInstant(ZoneOffset.UTC);
+                Movie film = movieModel.getMovieByName(selection[2]);
+                CinemaRoom room = roomModel.getRoom(selection[2]);
+                Presentation pres = presentationModel.getPresentation(film,presDate,room);
+                ArrayList<String> seats = new ArrayList<String>();
+
+                for(int i = 0; i < pres.getRoom().getAllRows().size() * 5; i++){
+                    if(i < pres.getFreeSeats().size()){
+                        seats.add(pres.getFreeSeats().get(i).getNumber()+"");
+                    }
+                    else{
+                        i = pres.getRoom().getAllRows().size() * 5;
+                    }
+                }
+                createWindow(new String[]{}, "Choose seats",getRoom);
+                smallWindow.selectionScreen(seats, "Name");
+
             }
         };
         reserveSeat = new EventHandler<ActionEvent>() {
