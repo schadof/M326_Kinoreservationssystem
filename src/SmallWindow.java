@@ -1,5 +1,6 @@
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Orientation;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.FlowPane;
@@ -53,9 +54,7 @@ public class SmallWindow {
         stage.close();
     }
     public void startWin() {
-        GridPane grid;
-
-        grid = new GridPane();
+        GridPane grid = new GridPane();
         grid.setHgap(10);
         grid.setVgap(10);
         for (int i = 0; i < label.size(); i++) {
@@ -66,7 +65,8 @@ public class SmallWindow {
             }
         }
 
-        flow = new FlowPane(grid);
+        flow = new FlowPane(Orientation.VERTICAL);
+        flow.getChildren().add(grid);
         stage = new Stage();
         stage.setScene(new Scene(flow, 500, 500));
         stage.setTitle(title);
@@ -76,6 +76,7 @@ public class SmallWindow {
     public void selectionScreen(ArrayList<String> screenInfo, String screenLayout){
         checklist = new ArrayList<>();
         ScrollPane scroll = new ScrollPane();
+        scroll.setMinWidth(500);
         for (int i = 0; i < screenInfo.size(); i++){
             checklist.add(new CheckBox(screenInfo.get(i)));
             scroll.setContent(checklist.get(i));

@@ -66,13 +66,14 @@ public class CinemaControl {
             @Override
             public void handle(ActionEvent actionEvent) {
                 ArrayList<String> screenInfo = new ArrayList<String>();
-                createWindow(new String[]{"Film"}, "Choose Pres",reserveSeat);
+                Instant userInput = LocalDate.parse(smallWindow.getText()[0]).atStartOfDay().toInstant(ZoneOffset.UTC);
                 for(int i = 0; i < presentationModel.getAllPresentations().size(); i++){
-                    if ( presentationModel.getAllPresentations().get(i).getStart() ==
-                            LocalDate.parse(smallWindow.getText()[0]).atStartOfDay().toInstant(ZoneOffset.UTC)){
+                    Instant presDate = presentationModel.getAllPresentations().get(i).getStart();
+                    if (presDate.equals(userInput)){
                             screenInfo.add(presentationModel.getAllPresentations().get(i).getMovie().getTitle());
                     }
                 }
+                createWindow(new String[]{"Film"}, "Choose Pres",reserveSeat);
                 smallWindow.selectionScreen(screenInfo, "Name");
             }
         };
@@ -110,43 +111,54 @@ public class CinemaControl {
                 try {
                     PresInfo info = getScreenInfo();
                     presentationModel. removePresentation(
-                            presentationModel.getPresentation(
-                                    movieModel.getMovieByName(info.getParameters()[0]),info.getDate(),
-                                    roomModel.getRoom(info.getRoomNum()
-                                    )
+                        presentationModel.getPresentation(
+                                 movieModel.getMovieByName(info.getParameters()[0]),info.getDate(),
+                                 roomModel.getRoom(info.getRoomNum()
                             )
+                        )
                     );
                     smallWindow.popup("successful removal");
                 }
-                catch (NullPointerException ne){
+                catch (NullPointerException e){
                     smallWindow.popup("could not be removed");
                 }
+
             }
         };
         getPresInfo = new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
                 try {
-                    PresInfo info = getScreenInfo();
-                    presentationModel.createPresentation(
-                            movieModel.getMovieByName(info.getParameters()[0]),
-                            roomModel.getRoom(info.getRoomNum()),
-                            info.getDate()
-                    );
+                     PresInfo info = getScreenInfo();
+                     if(!movieModel.getMovieByName(info.getParameters()[0]).equals(null)){
+
+                        presentationModel.createPresentation(
+                        movieModel.getMovieByName(info.getParameters()[0]),
+                        roomModel.getRoom(info.getRoomNum()),
+                        info.getDate()
+                        );
+                     }
+                     else {
+                         throw new NullPointerException();
+                     }
                     smallWindow.popup("successfull created");
                 }
-                catch (NullPointerException ne){
+                catch (Exception ne){
                     smallWindow.popup("could not be created");
                 }
+
             }
         };
     }
-    private PresInfo getScreenInfo(){
+    private PresInfo getScreenInfo() throws IndexOutOfBoundsException{
 
         PresInfo info = new PresInfo();
         info.setParameters(smallWindow.getText());
-        info.setRoomNum(Integer.parseInt(info.getParameters()[1]) - 1);
+        info.setRoomNum(Integer.parseInt(info.getParameters()[1])-1);
         info.setDate( LocalDate.parse(info.getParameters()[2]).atStartOfDay().toInstant(ZoneOffset.UTC));
+        if(info.getRoomNum() > roomModel.getAllRooms().size() || info.getRoomNum() < 0){
+            throw new IndexOutOfBoundsException();
+        }
 
         return info;
     }
