@@ -84,5 +84,13 @@ public class SmallWindow {
         flow.getChildren().add(scroll);
 
     }
+    public String returnSelection(){
+        for(int i = 0; i < checklist.size(); i++){
+            if(checklist.get(i).isSelected()){
+                return  checklist.get(i).getText().toString();
+            }
+        }
+        return null;
+    }
 
 }

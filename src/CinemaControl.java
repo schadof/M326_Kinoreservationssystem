@@ -15,7 +15,7 @@ public class CinemaControl {
     private EventHandler<ActionEvent>
             reserveSeat, removeReservation,
             addClient, removeClient, removePresentation,
-            getPresInfo, getPresentation;
+            getPresInfo, getPresentation, getRoom;
     private SmallWindow smallWindow;
 
     public CinemaControl( RoomAdministration roomModel,
@@ -70,11 +70,18 @@ public class CinemaControl {
                 for(int i = 0; i < presentationModel.getAllPresentations().size(); i++){
                     Instant presDate = presentationModel.getAllPresentations().get(i).getStart();
                     if (presDate.equals(userInput)){
-                            screenInfo.add(presentationModel.getAllPresentations().get(i).getMovie().getTitle());
+                            screenInfo.add(presentationModel.getAllPresentations().get(i).getMovie().getTitle() +", "+
+                                    presentationModel.getAllPresentations().get(i).getRoom().getID());
                     }
                 }
-                createWindow(new String[]{"Film"}, "Choose Pres",reserveSeat);
+                createWindow(new String[]{"Film","Room"}, "Choose Pres",reserveSeat);
                 smallWindow.selectionScreen(screenInfo, "Name");
+            }
+        };
+        getRoom = new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                smallWindow.getText();
             }
         };
         reserveSeat = new EventHandler<ActionEvent>() {
